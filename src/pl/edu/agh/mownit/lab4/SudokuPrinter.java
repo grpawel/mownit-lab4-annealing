@@ -8,7 +8,7 @@ public class SudokuPrinter {
         final StringBuilder builder = new StringBuilder();
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
-                builder.append(digits[col][row]);
+                builder.append(digits[row][col]);
                 if( (col + 1) % squareSize == 0 && col + 1 != size) {
                     builder.append(" | ");
                 } else {

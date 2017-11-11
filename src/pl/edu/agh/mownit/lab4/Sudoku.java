@@ -38,7 +38,7 @@ public class Sudoku implements IProblem {
     private void fillMovableArray() {
         for (int col = 0; col < SIZE; col++) {
             for (int row = 0; row < SIZE; row++) {
-                movable[col][row] = digits[col][row] == 0;
+                movable[row][col] = digits[row][col] == 0;
             }
         }
     }
@@ -59,14 +59,14 @@ public class Sudoku implements IProblem {
         final RandomSet<Integer> missingDigits = new RandomSet<>(IntStream.range(1, SIZE + 1).boxed().collect(Collectors.toSet()));
         for (int col = squareCol * SQUARE_SIZE; col < (squareCol + 1) * SQUARE_SIZE; col++) {
             for (int row = squareRow * SQUARE_SIZE; row < (squareRow + 1) * SQUARE_SIZE; row++) {
-                missingDigits.remove(digits[col][row]);
+                missingDigits.remove(digits[row][col]);
             }
         }
         // fill empty spaces with random digits
         for (int col = squareCol * SQUARE_SIZE; col < (squareCol + 1) * SQUARE_SIZE; col++) {
             for (int row = squareRow * SQUARE_SIZE; row < (squareRow + 1) * SQUARE_SIZE; row++) {
-                if (digits[col][row] == 0) {
-                    digits[col][row] = missingDigits.pollRandom(random);
+                if (digits[row][col] == 0) {
+                    digits[row][col] = missingDigits.pollRandom(random);
                 }
             }
         }
@@ -83,7 +83,7 @@ public class Sudoku implements IProblem {
         final int squareRow = squareId / SQUARE_SIZE;
         // find which indices can be swapped
         final List<Integer> indicesAvailableToSwap = IntStream.range(0, SIZE)
-                .filter(i -> movable[squareCol + i % SQUARE_SIZE][squareRow + i / SQUARE_SIZE])
+                .filter(i -> movable[squareRow + i / SQUARE_SIZE][squareCol + i % SQUARE_SIZE])
                 .boxed()
                 .collect(Collectors.toList());
         // pick two indices
@@ -94,9 +94,9 @@ public class Sudoku implements IProblem {
         final int row2 = indicesAvailableToSwap.get(1) / SQUARE_SIZE;
         // swap in copy of sudoku table
         final int[][] new_digits = Utils.deepCopy(digits);
-        final int tmp = new_digits[col1][row1];
-        new_digits[col1][row1] = new_digits[col2][row2];
-        new_digits[col2][row2] = tmp;
+        final int tmp = new_digits[row1][col1];
+        new_digits[row1][col1] = new_digits[row2][col2];
+        new_digits[row2][col2] = tmp;
         return new Sudoku(new_digits, movable);
     }
 
@@ -111,7 +111,7 @@ public class Sudoku implements IProblem {
         for (int row = 0; row < SIZE; row++) {
             final int row_final = row;
             final int distinctDigitsInRow = IntStream.range(0, SIZE)
-                    .map(col -> digits[col][row_final])
+                    .map(col -> digits[row_final][col])
                     .boxed()
                     .collect(Collectors.toSet())
                     .size();
@@ -125,7 +125,7 @@ public class Sudoku implements IProblem {
         for (int col = 0; col < SIZE; col++) {
             final int col_final = col;
             final int distinctDigitsInColumn = IntStream.range(0, SIZE)
-                    .map(row -> digits[col_final][row])
+                    .map(row -> digits[row][col_final])
                     .boxed()
                     .collect(Collectors.toSet())
                     .size();
