@@ -45,6 +45,7 @@ public class AnnealingSimulator {
                     currentEnergy = nextEnergy;
                 }
             }
+            iteration++;
         }
         finalState = currentState;
         totalIterations = iteration;
