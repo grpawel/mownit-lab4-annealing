@@ -69,6 +69,10 @@ public class Sudoku implements IProblem {
                 + calculateRepeatingElementsInRows();
     }
 
+    @Override
+    public String toString() {
+        return new SudokuPrinter().print(digits, SIZE, SQUARE_SIZE);
+    }
 
     private int calculateRepeatingElementsInRows() {
         int repeatingElements = 0;
@@ -136,4 +140,5 @@ public class Sudoku implements IProblem {
             }
         }
     }
+
 }
