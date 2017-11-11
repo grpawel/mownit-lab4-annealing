@@ -57,14 +57,14 @@ public class Sudoku implements IProblem {
     private void fillSquareWithRandomDigits(int squareCol, int squareRow) {
         // find digits that are missing from square
         final RandomSet<Integer> missingDigits = new RandomSet<>(IntStream.range(1, SIZE + 1).boxed().collect(Collectors.toSet()));
-        for (int col = squareCol; col < squareCol + SQUARE_SIZE; col++) {
-            for (int row = squareRow; row < squareRow + SQUARE_SIZE; row++) {
+        for (int col = squareCol * SQUARE_SIZE; col < (squareCol + 1) * SQUARE_SIZE; col++) {
+            for (int row = squareRow * SQUARE_SIZE; row < (squareRow + 1) * SQUARE_SIZE; row++) {
                 missingDigits.remove(digits[col][row]);
             }
         }
         // fill empty spaces with random digits
-        for (int col = squareCol; col < squareCol + SQUARE_SIZE; col++) {
-            for (int row = squareRow; row < squareRow + SQUARE_SIZE; row++) {
+        for (int col = squareCol * SQUARE_SIZE; col < (squareCol + 1) * SQUARE_SIZE; col++) {
+            for (int row = squareRow * SQUARE_SIZE; row < (squareRow + 1) * SQUARE_SIZE; row++) {
                 if (digits[col][row] == 0) {
                     digits[col][row] = missingDigits.pollRandom(random);
                 }
