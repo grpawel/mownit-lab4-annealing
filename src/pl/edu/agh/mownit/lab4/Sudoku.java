@@ -35,6 +35,43 @@ public class Sudoku implements IProblem {
         this.movable = movable;
     }
 
+    private void fillMovableArray() {
+        for (int col = 0; col < SIZE; col++) {
+            for (int row = 0; row < SIZE; row++) {
+                movable[col][row] = digits[col][row] == 0;
+            }
+        }
+    }
+
+    /**
+     * Fills squares with random values so in each square there is one digit from [1,9]
+     */
+    private void fillSquaresWithRandomDigits() {
+        for (int squareCol = 0; squareCol < SIZE / SQUARE_SIZE; squareCol++) {
+            for (int squareRow = 0; squareRow < SIZE / SQUARE_SIZE; squareRow++) {
+                fillSquareWithRandomDigits(squareCol, squareRow);
+            }
+        }
+    }
+
+    private void fillSquareWithRandomDigits(int squareCol, int squareRow) {
+        // find digits that are missing from square
+        final RandomSet<Integer> missingDigits = new RandomSet<>(IntStream.range(1, SIZE + 1).boxed().collect(Collectors.toSet()));
+        for (int col = squareCol; col < squareCol + SQUARE_SIZE; col++) {
+            for (int row = squareRow; row < squareRow + SQUARE_SIZE; row++) {
+                missingDigits.remove(digits[col][row]);
+            }
+        }
+        // fill empty spaces with random digits
+        for (int col = squareCol; col < squareCol + SQUARE_SIZE; col++) {
+            for (int row = squareRow; row < squareRow + SQUARE_SIZE; row++) {
+                if (digits[col][row] == 0) {
+                    digits[col][row] = missingDigits.pollRandom(random);
+                }
+            }
+        }
+    }
+
     @Override
     public IProblem generateNextState() {
         // 0 1 2
@@ -69,11 +106,6 @@ public class Sudoku implements IProblem {
                 + calculateRepeatingElementsInRows();
     }
 
-    @Override
-    public String toString() {
-        return new SudokuPrinter().print(digits, SIZE, SQUARE_SIZE);
-    }
-
     private int calculateRepeatingElementsInRows() {
         int repeatingElements = 0;
         for (int row = 0; row < SIZE; row++) {
@@ -102,43 +134,11 @@ public class Sudoku implements IProblem {
         return repeatingElements;
     }
 
-
-    private void fillMovableArray() {
-        for (int col = 0; col < SIZE; col++) {
-            for (int row = 0; row < SIZE; row++) {
-                movable[col][row] = digits[col][row] == 0;
-            }
-        }
-    }
-
-    /**
-     * Fills squares with random values so in each square there is one digit from [1,9]
-     */
-    private void fillSquaresWithRandomDigits() {
-        for (int squareCol = 0; squareCol < SIZE / SQUARE_SIZE; squareCol++) {
-            for (int squareRow = 0; squareRow < SIZE / SQUARE_SIZE; squareRow++) {
-                fillSquareWithRandomDigits(squareCol, squareRow);
-            }
-        }
+    @Override
+    public String toString() {
+        return new SudokuPrinter().print(digits, SIZE, SQUARE_SIZE);
     }
 
 
-    private void fillSquareWithRandomDigits(int squareCol, int squareRow) {
-        // find digits that are missing from square
-        final RandomSet<Integer> missingDigits = new RandomSet<>(IntStream.range(1, SIZE + 1).boxed().collect(Collectors.toSet()));
-        for (int col = squareCol; col < squareCol + SQUARE_SIZE; col++) {
-            for (int row = squareRow; row < squareRow + SQUARE_SIZE; row++) {
-                missingDigits.remove(digits[col][row]);
-            }
-        }
-        // fill empty spaces with random digits
-        for (int col = squareCol; col < squareCol + SQUARE_SIZE; col++) {
-            for (int row = squareRow; row < squareRow + SQUARE_SIZE; row++) {
-                if (digits[col][row] == 0) {
-                    digits[col][row] = missingDigits.pollRandom(random);
-                }
-            }
-        }
-    }
 
 }
