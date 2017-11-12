@@ -44,7 +44,7 @@ public class Sudoku implements IProblem {
     }
 
     /**
-     * Fills squares with random values so in each square there is one digit from [1,9]
+     * Fills squares with missing values so in each square there is one digit from [1,9]
      */
     private void fillSquaresWithRandomDigits() {
         for (int squareCol = 0; squareCol < SIZE / SQUARE_SIZE; squareCol++) {
@@ -72,12 +72,17 @@ public class Sudoku implements IProblem {
         }
     }
 
+    /**
+     * Randomly swaps two digits in one square picking ones not present in original puzzle.
+     * @return New puzzle with digits swapped.
+     */
     @Override
     public IProblem generateNextState() {
+        // select square
+        // order of square ids:
         // 0 1 2
         // 3 4 5
         // 6 7 8
-        // select square
         final int squareId = random.nextInt(SIZE);
         final int squareCol = squareId % SQUARE_SIZE;
         final int squareRow = squareId / SQUARE_SIZE;
@@ -100,6 +105,9 @@ public class Sudoku implements IProblem {
         return new Sudoku(new_digits, movable);
     }
 
+    /**
+     * Calculates repeating elements in columns and rows. Within squares all elements are distinct.
+     */
     @Override
     public double calculateEnergy() {
         return calculateRepeatingElementsInColumns()
@@ -138,7 +146,6 @@ public class Sudoku implements IProblem {
     public String toString() {
         return new SudokuPrinter().print(digits, SIZE, SQUARE_SIZE);
     }
-
 
 
 }
