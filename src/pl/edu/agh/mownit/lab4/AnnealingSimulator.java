@@ -11,8 +11,8 @@ public class AnnealingSimulator {
 
     private IProblem finalState = null;
     private IProblem bestState = null;
+    private double bestStateEnergy = Double.MAX_VALUE;
     private int totalIterations = 0;
-
 
     private final int maxIterations;
 
@@ -27,15 +27,20 @@ public class AnnealingSimulator {
         int iteration = 0;
         IProblem currentState = initialState;
         double currentEnergy = currentState.calculateEnergy();
-
         while (iteration < maxIterations) {
+            if(iteration % 1000 == 0) {
+                System.out.println(String.format("Iteration %d, current: %f, max: %f", iteration, currentEnergy, bestStateEnergy));
+            }
             final Double currentTemp = tempFunction.calculate(iteration);
             final IProblem nextState = currentState.generateNextState();
             final double nextEnergy = nextState.calculateEnergy();
             if (currentEnergy > nextEnergy) {
                 currentState = nextState;
                 currentEnergy = nextEnergy;
-                bestState = nextState;
+                if(bestStateEnergy > nextEnergy) {
+                    bestState = nextState;
+                    bestStateEnergy = nextEnergy;
+                }
             } else {
                 final Boolean acceptWorseSolution = probabilityFunction.calculate(currentTemp, currentEnergy, nextEnergy);
                 if (acceptWorseSolution) {
