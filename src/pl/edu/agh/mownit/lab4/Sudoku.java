@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
  * Created by Paweł Grochola on 11.11.2017.
  */
 public class Sudoku implements IProblem {
-    private static final int SIZE = 9;
+    public static final int SIZE = 9;
     private static final int SQUARE_SIZE = 3;
     private final int[][] digits;
     private final boolean[][] movable;
