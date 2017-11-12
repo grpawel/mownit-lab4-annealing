@@ -88,10 +88,10 @@ public class Sudoku implements IProblem {
                 .collect(Collectors.toList());
         // pick two indices
         Collections.shuffle(indicesAvailableToSwap);
-        final int col1 = indicesAvailableToSwap.get(0) % SQUARE_SIZE;
-        final int row1 = indicesAvailableToSwap.get(0) / SQUARE_SIZE;
-        final int col2 = indicesAvailableToSwap.get(1) % SQUARE_SIZE;
-        final int row2 = indicesAvailableToSwap.get(1) / SQUARE_SIZE;
+        final int col1 = squareCol * SQUARE_SIZE + indicesAvailableToSwap.get(0) % SQUARE_SIZE;
+        final int row1 = squareRow * SQUARE_SIZE + indicesAvailableToSwap.get(0) / SQUARE_SIZE;
+        final int col2 = squareCol * SQUARE_SIZE + indicesAvailableToSwap.get(1) % SQUARE_SIZE;
+        final int row2 = squareRow * SQUARE_SIZE + indicesAvailableToSwap.get(1) / SQUARE_SIZE;
         // swap in copy of sudoku table
         final int[][] new_digits = Utils.deepCopy(digits);
         final int tmp = new_digits[row1][col1];
