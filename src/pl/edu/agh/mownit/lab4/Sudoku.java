@@ -83,7 +83,7 @@ public class Sudoku implements IProblem {
         final int squareRow = squareId / SQUARE_SIZE;
         // find which indices can be swapped
         final List<Integer> indicesAvailableToSwap = IntStream.range(0, SIZE)
-                .filter(i -> movable[squareRow + i / SQUARE_SIZE][squareCol + i % SQUARE_SIZE])
+                .filter(i -> movable[squareRow * SQUARE_SIZE + i / SQUARE_SIZE][squareCol * SQUARE_SIZE + i % SQUARE_SIZE])
                 .boxed()
                 .collect(Collectors.toList());
         // pick two indices
