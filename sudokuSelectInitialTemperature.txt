@@ -1,0 +1,15 @@
+sudoku1.txt linear boltzmann 100000 1000000
+sudoku1.txt linear boltzmann 10000 1000000
+sudoku1.txt linear boltzmann 1000  2000000
+sudoku1.txt linear boltzmann 100  1000000
+sudoku1.txt linear boltzmann 10  1000000
+sudoku1.txt linear boltzmann 1  100000
+sudoku1.txt linear boltzmann 0.9  100000
+sudoku1.txt linear boltzmann 0.8  100000
+sudoku1.txt linear boltzmann 0.7  100000
+sudoku1.txt linear boltzmann 0.6  100000
+sudoku1.txt linear boltzmann 0.5  100000
+sudoku1.txt linear boltzmann 0.4  100000
+sudoku1.txt linear boltzmann 0.3  100000
+sudoku1.txt linear boltzmann 0.2  100000
+sudoku1.txt linear boltzmann 0.1  100000
