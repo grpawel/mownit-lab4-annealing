@@ -25,7 +25,7 @@ public class Program {
         executors.shutdown();
     }
 
-    private static synchronized void printAnnealingResults(AnnealingSimulator as) {
-        System.out.println(as.getTotalIterations() + " " + as.getBestState().calculateEnergy());
+    private static synchronized void printAnnealingResults(final AnnealingSimulator as) {
+        System.out.println(as.resultToString());
     }
 }

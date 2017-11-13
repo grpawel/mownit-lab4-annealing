@@ -31,16 +31,19 @@ public class AnnealingSettingsReader {
     }
 
     private AnnealingSimulator createSettingsFromLine(final String[] tokens) {
-        final IProblem initialState = createInitialState(tokens[0]);
         final double initialTemp = Double.parseDouble(tokens[3]);
         final int maxIterations = Integer.parseInt(tokens[4]);
-        final TemperatureFunction temperatureFunction = createTempFunction(tokens[1], initialTemp, maxIterations);
-        final ProbabilityFunction probabilityFunction = createProbabilityFunction(tokens[2]);
-        return new AnnealingSimulatorBuilder().setInitialState(initialState)
+        final AnnealingSettings annealingSettings = new AnnealingSettingsBuilder()
+                .setInitialState(createInitialState(tokens[0]))
+                .setProblemName(tokens[0])
+                .setTempFunction(createTempFunction(tokens[1], initialTemp, maxIterations))
+                .setTempFunctionName(tokens[1])
+                .setInitialTemp(initialTemp)
+                .setProbabilityFunction(createProbabilityFunction(tokens[2]))
+                .setProbabilityFunctionName(tokens[2])
                 .setMaxIterations(maxIterations)
-                .setTempFunction(temperatureFunction)
-                .setProbabilityFunction(probabilityFunction)
-                .createAnnealingSimulator();
+                .createAnnealingSettings();
+        return new AnnealingSimulator(annealingSettings);
     }
 
     private IProblem createInitialState(final String problemType) {

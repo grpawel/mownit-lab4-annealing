@@ -4,31 +4,23 @@ package pl.edu.agh.mownit.lab4;
  * Created by Paweł Grochola on 11.11.2017.
  */
 public class AnnealingSimulator {
-    private final IProblem initialState;
-    private final TemperatureFunction tempFunction;
-    //probability of accepting worse state, takes temperature as argument
-    private final ProbabilityFunction probabilityFunction;
+    private final AnnealingSettings settings;
 
     private IProblem finalState = null;
     private IProblem bestState = null;
     private double bestStateEnergy = Double.MAX_VALUE;
     private int totalIterations = 0;
 
-    private final int maxIterations;
-
-    public AnnealingSimulator(final IProblem initialState, final TemperatureFunction tempFunction, final ProbabilityFunction probabilityFunction, final int maxIterations) {
-        this.initialState = initialState;
-        this.tempFunction = tempFunction;
-        this.probabilityFunction = probabilityFunction;
-        this.maxIterations = maxIterations;
+    public AnnealingSimulator(final AnnealingSettings settings) {
+        this.settings = settings;
     }
 
     public void simulate() {
         int iteration = 0;
-        IProblem currentState = initialState;
+        IProblem currentState = settings.getInitialState();
         double currentEnergy = currentState.calculateEnergy();
-        while (iteration < maxIterations && !currentState.isSolved()) {
-            final Double currentTemp = tempFunction.calculate(iteration);
+        while (iteration < settings.getMaxIterations() && !currentState.isSolved()) {
+            final Double currentTemp = settings.getTempFunction().calculate(iteration);
             final IProblem nextState = currentState.generateNextState();
             final double nextEnergy = nextState.calculateEnergy();
             if (currentEnergy > nextEnergy) {
@@ -39,7 +31,7 @@ public class AnnealingSimulator {
                     bestStateEnergy = nextEnergy;
                 }
             } else {
-                final Boolean acceptWorseSolution = probabilityFunction.calculate(currentTemp, currentEnergy, nextEnergy);
+                final Boolean acceptWorseSolution = settings.getProbabilityFunction().calculate(currentTemp, currentEnergy, nextEnergy);
                 if (acceptWorseSolution) {
                     currentState = nextState;
                     currentEnergy = nextEnergy;
@@ -61,5 +53,9 @@ public class AnnealingSimulator {
 
     public int getTotalIterations() {
         return totalIterations;
+    }
+
+    public String resultToString() {
+        return settings.toString() + "\t" + "iterations: " + totalIterations + " energy: " + bestStateEnergy;
     }
 }
