@@ -143,6 +143,11 @@ public class Sudoku implements IProblem {
     }
 
     @Override
+    public boolean isSolved() {
+        return calculateEnergy() == 0;
+    }
+
+    @Override
     public String toString() {
         return new SudokuPrinter().print(digits, SIZE, SQUARE_SIZE);
     }

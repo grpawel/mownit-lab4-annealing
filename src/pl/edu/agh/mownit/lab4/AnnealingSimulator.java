@@ -27,7 +27,7 @@ public class AnnealingSimulator {
         int iteration = 0;
         IProblem currentState = initialState;
         double currentEnergy = currentState.calculateEnergy();
-        while (iteration < maxIterations) {
+        while (iteration < maxIterations && !currentState.isSolved()) {
             final Double currentTemp = tempFunction.calculate(iteration);
             final IProblem nextState = currentState.generateNextState();
             final double nextEnergy = nextState.calculateEnergy();

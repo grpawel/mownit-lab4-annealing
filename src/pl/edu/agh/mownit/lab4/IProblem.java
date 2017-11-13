@@ -8,4 +8,6 @@ public interface IProblem {
 
     double calculateEnergy();
 
+    boolean isSolved();
+
 }
