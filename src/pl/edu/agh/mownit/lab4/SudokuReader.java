@@ -45,8 +45,6 @@ public class SudokuReader {
                 puzzle[rowNumber] = sudokuRow;
                 rowNumber++;
             }
-        } catch (FileNotFoundException e) {
-            throw new SudokuFileException(e);
         } catch (IOException e) {
             throw new SudokuFileException(e);
         }
