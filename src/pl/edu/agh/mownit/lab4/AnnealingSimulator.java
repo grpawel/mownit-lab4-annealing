@@ -1,5 +1,8 @@
 package pl.edu.agh.mownit.lab4;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Paweł Grochola on 11.11.2017.
  */
@@ -10,6 +13,7 @@ public class AnnealingSimulator {
     private IProblem bestState = null;
     private double bestStateEnergy = Double.MAX_VALUE;
     private int totalIterations = 0;
+    private final List<Double> energyHistory = new ArrayList<>();
 
     public AnnealingSimulator(final AnnealingSettings settings) {
         this.settings = settings;
@@ -20,13 +24,14 @@ public class AnnealingSimulator {
         IProblem currentState = settings.getInitialState();
         double currentEnergy = currentState.calculateEnergy();
         while (iteration < settings.getMaxIterations() && !currentState.isSolved()) {
+            energyHistory.add(currentEnergy);
             final Double currentTemp = settings.getTempFunction().calculate(iteration);
             final IProblem nextState = currentState.generateNextState();
             final double nextEnergy = nextState.calculateEnergy();
             if (currentEnergy > nextEnergy) {
                 currentState = nextState;
                 currentEnergy = nextEnergy;
-                if(bestStateEnergy > nextEnergy) {
+                if (bestStateEnergy > nextEnergy) {
                     bestState = nextState;
                     bestStateEnergy = nextEnergy;
                 }
@@ -39,6 +44,7 @@ public class AnnealingSimulator {
             }
             iteration++;
         }
+        energyHistory.add(currentEnergy);
         finalState = currentState;
         totalIterations = iteration;
     }
@@ -53,6 +59,14 @@ public class AnnealingSimulator {
 
     public int getTotalIterations() {
         return totalIterations;
+    }
+
+    public String getIdentifier() {
+        return settings.getIdentifier();
+    }
+
+    public List<Double> getEnergyHistory() {
+        return energyHistory;
     }
 
     public String resultToString() {

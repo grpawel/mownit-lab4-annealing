@@ -1,5 +1,1 @@
-set terminal png 
-set title "Simple Plots" font ",20"
-set key left box
-set samples 50
-set style data points
+sudoku3.txt exp0001 boltzmann 0.4  1000000 plot_exp0001

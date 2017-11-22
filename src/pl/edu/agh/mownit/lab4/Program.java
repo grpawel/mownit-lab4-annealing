@@ -1,5 +1,6 @@
 package pl.edu.agh.mownit.lab4;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
@@ -20,6 +21,7 @@ public class Program {
                 }, executors))
                 .collect(Collectors.toList())
                 .stream()
+                .map(future -> future.thenApply(Program::createGraph))
                 .map(CompletableFuture::join)
                 .forEach(Program::printAnnealingResults);
         executors.shutdown();
@@ -27,5 +29,16 @@ public class Program {
 
     private static synchronized void printAnnealingResults(final AnnealingSimulator as) {
         System.out.println(as.resultToString());
+    }
+
+    private static AnnealingSimulator createGraph(final AnnealingSimulator annealing) {
+        final Plotter plotter = new Plotter(annealing.getEnergyHistory(), "Energy function", "Iteration", "Energy");
+        try {
+            plotter.saveGraph(new File(annealing.getIdentifier() + ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return annealing;
+
     }
 }

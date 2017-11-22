@@ -13,8 +13,9 @@ public class AnnealingSettings {
     private final ProbabilityFunction probabilityFunction;
     private final String probabilityFunctionName;
     private final int maxIterations;
+    private final String identifier;
 
-    public AnnealingSettings(final IProblem initialState, final String problemName, final TemperatureFunction tempFunction, final Double initialTemp, final String tempFunctionName, final ProbabilityFunction probabilityFunction, final String probabilityFunctionName, final int maxIterations) {
+    public AnnealingSettings(final IProblem initialState, final String problemName, final TemperatureFunction tempFunction, final Double initialTemp, final String tempFunctionName, final ProbabilityFunction probabilityFunction, final String probabilityFunctionName, final int maxIterations, final String identifier) {
         this.initialState = initialState;
         this.problemName = problemName;
         this.tempFunction = tempFunction;
@@ -23,6 +24,7 @@ public class AnnealingSettings {
         this.probabilityFunction = probabilityFunction;
         this.probabilityFunctionName = probabilityFunctionName;
         this.maxIterations = maxIterations;
+        this.identifier = identifier;
     }
 
     public IProblem getInitialState() {
@@ -55,6 +57,10 @@ public class AnnealingSettings {
 
     public int getMaxIterations() {
         return maxIterations;
+    }
+
+    public String getIdentifier() {
+        return identifier;
     }
 
     @Override

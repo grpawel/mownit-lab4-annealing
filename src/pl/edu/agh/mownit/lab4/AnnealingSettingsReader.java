@@ -12,7 +12,8 @@ import java.util.stream.Stream;
 /**
  * File structure:
  * Each line contains separate settings.
- * Problem type / file name for sudoku, temperature function, probability function, initial temperature, max iterations
+ * Problem type / file name for sudoku, temperature function, probability function, initial temperature, max iterations, identifier*
+ * Identifier is used to save results to file
  * Eg:
  * sudoku1.txt linear boltzmann 30000 1000000
  */
@@ -43,6 +44,7 @@ public class AnnealingSettingsReader {
                 .setProbabilityFunction(createProbabilityFunction(tokens[2]))
                 .setProbabilityFunctionName(tokens[2])
                 .setMaxIterations(maxIterations)
+                .setIdentifier(tokens[5])
                 .createAnnealingSettings();
         return new AnnealingSimulator(annealingSettings);
     }

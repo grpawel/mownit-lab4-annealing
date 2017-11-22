@@ -9,6 +9,7 @@ public class AnnealingSettingsBuilder {
     private ProbabilityFunction probabilityFunction;
     private String probabilityFunctionName;
     private int maxIterations;
+    private String identifier;
 
     public AnnealingSettingsBuilder setInitialState(final IProblem initialState) {
         this.initialState = initialState;
@@ -50,7 +51,12 @@ public class AnnealingSettingsBuilder {
         return this;
     }
 
+    public AnnealingSettingsBuilder setIdentifier(final String identifier) {
+        this.identifier = identifier;
+        return this;
+    }
+
     public AnnealingSettings createAnnealingSettings() {
-        return new AnnealingSettings(initialState, problemName, tempFunction, initialTemp, tempFunctionName, probabilityFunction, probabilityFunctionName, maxIterations);
+        return new AnnealingSettings(initialState, problemName, tempFunction, initialTemp, tempFunctionName, probabilityFunction, probabilityFunctionName, maxIterations, identifier);
     }
 }
