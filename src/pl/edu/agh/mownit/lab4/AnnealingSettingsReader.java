@@ -26,6 +26,7 @@ public class AnnealingSettingsReader {
     public Stream<AnnealingSimulator> readFromFile() throws IOException {
         return Files.lines(new File(fileName).toPath())
                 .map(String::trim)
+                .filter(line -> !line.isEmpty())
                 .map(line -> line.split("\\s+"))
                 .map(this::createSettingsFromLine);
     }
