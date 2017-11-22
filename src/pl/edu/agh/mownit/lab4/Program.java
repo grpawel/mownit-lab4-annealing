@@ -1,7 +1,9 @@
 package pl.edu.agh.mownit.lab4;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -34,7 +36,9 @@ public class Program {
     private static AnnealingSimulator createGraph(final AnnealingSimulator annealing) {
         final Plotter plotter = new Plotter(annealing.getEnergyHistory(), "Energy function", "Iteration", "Energy");
         try {
-            plotter.saveGraph(new File(annealing.getIdentifier() + ".png"));
+            final Path path =  Paths.get("plots/" + annealing.getIdentifier() + ".png");
+            Files.createDirectories(path.getParent());
+            plotter.saveGraph(path.toFile());
         } catch (IOException e) {
             e.printStackTrace();
         }
