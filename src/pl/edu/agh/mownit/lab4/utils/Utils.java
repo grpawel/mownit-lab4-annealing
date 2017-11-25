@@ -1,5 +1,7 @@
 package pl.edu.agh.mownit.lab4.utils;
 
+import pl.edu.agh.mownit.lab4.problems.crystallization.Pixel;
+
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
@@ -14,6 +16,17 @@ public class Utils {
             return null;
         }
         final int[][] result = new int[original.length][];
+        for (int i = 0; i < original.length; i++) {
+            result[i] = Arrays.copyOf(original[i], original[i].length);
+        }
+        return result;
+    }
+
+    public static Pixel[][] deepCopy(Pixel[][] original) {
+        if (original == null) {
+            return null;
+        }
+        final Pixel[][] result = new Pixel[original.length][];
         for (int i = 0; i < original.length; i++) {
             result[i] = Arrays.copyOf(original[i], original[i].length);
         }

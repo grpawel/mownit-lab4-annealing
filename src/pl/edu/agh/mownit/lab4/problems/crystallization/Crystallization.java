@@ -1,13 +1,15 @@
 package pl.edu.agh.mownit.lab4.problems.crystallization;
 
+import pl.edu.agh.mownit.lab4.problems.IProblem;
 import pl.edu.agh.mownit.lab4.problems.crystallization.neighbourhoods.Neighbourhood;
+import pl.edu.agh.mownit.lab4.utils.Utils;
 
 import java.util.Random;
 
 /**
  * Created by Paweł Grochola on 25.11.2017.
  */
-public class Crystallization {
+public class Crystallization implements IProblem{
 
     private final Pixel[][] image;
 
@@ -19,6 +21,12 @@ public class Crystallization {
         this.image = new Pixel[size][size];
         this.neighbourhood = neighbourhood;
         generateImage(density);
+    }
+
+    private Crystallization(final int size, final Pixel[][] image, final Neighbourhood neighbourhood){
+        this.size = size;
+        this.image = image;
+        this.neighbourhood = neighbourhood;
     }
 
     private void generateImage(final double density) {
@@ -37,6 +45,34 @@ public class Crystallization {
                 blackPixels++;
             }
         }
+    }
+
+    @Override
+    public IProblem generateNextState() {
+        final Random random = new Random();
+        final int randomPixel1 = random.nextInt(size * size);
+        int randomPixel2;
+        do {
+            randomPixel2 = random.nextInt(size * size);
+        }
+        while(randomPixel1 == randomPixel2);
+        //swap in new copy of image
+        final Pixel[][] copy = Utils.deepCopy(image);
+        final Pixel tmp = copy[randomPixel1 % size][randomPixel1 / size];
+        copy[randomPixel1 % size][randomPixel1 / size] = copy[randomPixel2%size][randomPixel2/size];
+        copy[randomPixel2 % size][randomPixel2 / size] = tmp;
+
+        return new Crystallization(size, copy, neighbourhood);
+    }
+
+    @Override
+    public double calculateEnergy() {
+        return neighbourhood.calculateEnergy(image);
+    }
+
+    @Override
+    public boolean isSolved() {
+        return false;
     }
 
     public Pixel[][] getImage() {

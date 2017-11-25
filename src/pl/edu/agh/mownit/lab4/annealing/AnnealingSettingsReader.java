@@ -1,6 +1,8 @@
 package pl.edu.agh.mownit.lab4.annealing;
 
 import pl.edu.agh.mownit.lab4.problems.IProblem;
+import pl.edu.agh.mownit.lab4.problems.crystallization.Crystallization;
+import pl.edu.agh.mownit.lab4.problems.crystallization.neighbourhoods.Neighbourhood8Black;
 import pl.edu.agh.mownit.lab4.problems.sudoku.SudokuReader;
 
 import java.io.File;
@@ -55,6 +57,9 @@ public class AnnealingSettingsReader {
     private IProblem createInitialState(final String problemType) {
         if (problemType.toLowerCase().contains("sudoku")) {
             return new SudokuReader(problemType).readFromFile();
+        }
+        if(problemType.contains("crystal")) {
+            return new Crystallization(512, 0.3, new Neighbourhood8Black());
         }
         return null;
     }
