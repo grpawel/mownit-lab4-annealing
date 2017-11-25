@@ -22,6 +22,14 @@ public class NeighbourhoodFactory {
                 return new HorizontalLines();
             case "VerticalLines":
                 return new VerticalLines();
+            case "FarCross":
+                return new FarCross();
+            case "FarPlus":
+                return new FarPlus();
+            case "HalfEmptyCross":
+                return new HalfEmptyCross();
+            case "HalfWhiteCross":
+                return new HalfWhiteCross();
         }
         return null;
     }
