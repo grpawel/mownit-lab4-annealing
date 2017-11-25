@@ -26,9 +26,9 @@ public class Program {
         reader.readFromFile()
                 .map(AnnealingSimulator::new)
                 .filter(annealing -> !doEnergyPlotFileExist(annealing))
-                .map(as -> CompletableFuture.supplyAsync(() -> {
-                    saveImage(as, "initial");
-                    return as;
+                .map(annealing -> CompletableFuture.supplyAsync(() -> {
+                    saveImage(annealing, "initial");
+                    return annealing;
                 }, executors))
                 .map(future -> future.thenApply(annealing -> {annealing.simulate(); return annealing;}))
                 .map(future -> future.thenApply(Program::createGraph))
