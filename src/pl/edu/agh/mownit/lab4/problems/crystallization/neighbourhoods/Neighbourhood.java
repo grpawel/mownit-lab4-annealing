@@ -11,12 +11,12 @@ public abstract class Neighbourhood {
     protected Pixel safeGetPixel(Pixel[][] pixels, int x, int y) {
         if (x < 0) {
             x += pixels.length;
-        } else if (x > pixels.length) {
+        } else if (x >= pixels.length) {
             x -= pixels.length;
         }
         if (y < 0) {
             y += pixels[0].length;
-        } else if (x > pixels[0].length) {
+        } else if (y >= pixels[0].length) {
             y -= pixels[0].length;
         }
         return pixels[x][y];
