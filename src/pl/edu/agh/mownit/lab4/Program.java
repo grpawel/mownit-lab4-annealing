@@ -46,7 +46,7 @@ public class Program {
     private static AnnealingSimulator createGraph(final AnnealingSimulator annealing) {
         final Plotter plotter = new Plotter(annealing.getEnergyHistory(), "Energy function", "Iteration", "Energy");
         try {
-            final Path path =  Paths.get("plots/" + annealing.getIdentifier() + ".png");
+            final Path path =  Paths.get("plots/" + annealing.getIdentifier() + "_plot.png");
             Files.createDirectories(path.getParent());
             plotter.saveGraph(path.toFile());
         } catch (IOException e) {
