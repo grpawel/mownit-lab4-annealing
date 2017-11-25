@@ -1,0 +1,2 @@
+crystal|256|0.3|8Black linear boltzmann 0.4  10000 crystal_test_square
+crystal|256|0.3|4Plus  linear boltzmann 0.4  10000 crystal_test_plus
