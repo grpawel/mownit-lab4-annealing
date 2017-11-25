@@ -19,14 +19,15 @@ public class AnnealingSimulator {
 
     public AnnealingSimulator(final AnnealingSettings settings) {
         this.settings = settings;
+        bestState = settings.getInitialState();
+        bestStateEnergy = settings.getInitialState().calculateEnergy();
+
     }
 
     public void simulate() {
         int iteration = 0;
         IProblem currentState = settings.getInitialState();
         double currentEnergy = currentState.calculateEnergy();
-        bestState = currentState;
-        bestStateEnergy = currentEnergy;
         while (iteration < settings.getMaxIterations() && !currentState.isSolved()) {
             energyHistory.add(currentEnergy);
             final Double currentTemp = settings.getTempFunction().calculate(iteration);

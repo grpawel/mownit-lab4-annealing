@@ -33,7 +33,7 @@ public class AnnealingSettingsReader {
         this.fileName = fileName;
     }
 
-    public Stream<AnnealingSimulator> readFromFile() throws IOException {
+    public Stream<AnnealingSettings> readFromFile() throws IOException {
         return Files.lines(new File(fileName).toPath())
                 .map(String::trim)
                 .filter(line -> !line.isEmpty())
@@ -41,10 +41,10 @@ public class AnnealingSettingsReader {
                 .map(this::createSettingsFromLine);
     }
 
-    private AnnealingSimulator createSettingsFromLine(final String[] tokens) {
+    private AnnealingSettings createSettingsFromLine(final String[] tokens) {
         final double initialTemp = Double.parseDouble(tokens[3]);
         final int maxIterations = Integer.parseInt(tokens[4]);
-        final AnnealingSettings annealingSettings = new AnnealingSettingsBuilder()
+        return new AnnealingSettingsBuilder()
                 .setInitialState(createInitialState(tokens[0]))
                 .setProblemName(tokens[0])
                 .setTempFunction(createTempFunction(tokens[1], initialTemp, maxIterations))
@@ -55,7 +55,6 @@ public class AnnealingSettingsReader {
                 .setMaxIterations(maxIterations)
                 .setIdentifier(tokens[5])
                 .createAnnealingSettings();
-        return new AnnealingSimulator(annealingSettings);
     }
 
     private IProblem createInitialState(final String problemType) {

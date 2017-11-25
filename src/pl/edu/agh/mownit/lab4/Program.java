@@ -3,6 +3,8 @@ package pl.edu.agh.mownit.lab4;
 import pl.edu.agh.mownit.lab4.annealing.AnnealingSettingsReader;
 import pl.edu.agh.mownit.lab4.annealing.AnnealingSimulator;
 import pl.edu.agh.mownit.lab4.annealing.Plotter;
+import pl.edu.agh.mownit.lab4.problems.crystallization.Crystallization;
+import pl.edu.agh.mownit.lab4.problems.crystallization.ImageCreator;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,13 +23,17 @@ public class Program {
         final ExecutorService executors = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         final AnnealingSettingsReader reader = new AnnealingSettingsReader(args[0]);
         reader.readFromFile()
+                .map(AnnealingSimulator::new)
+
                 .map(as -> CompletableFuture.supplyAsync(() -> {
-                    as.simulate();
+                    saveImage(as, "initial");
                     return as;
                 }, executors))
+                .map(future -> future.thenApply(annealing -> {annealing.simulate(); return annealing;}))
+                .map(future -> future.thenApply(Program::createGraph))
+                .map(future -> future.thenApply(annealing -> saveImage(annealing, "result")))
                 .collect(Collectors.toList())
                 .stream()
-                .map(future -> future.thenApply(Program::createGraph))
                 .map(CompletableFuture::join)
                 .forEach(Program::printAnnealingResults);
         executors.shutdown();
@@ -47,6 +53,19 @@ public class Program {
             e.printStackTrace();
         }
         return annealing;
+    }
 
+    private static AnnealingSimulator saveImage(final AnnealingSimulator annealing, final String fileNameAppendix) {
+        if(annealing.getBestState() instanceof Crystallization) {
+            final ImageCreator imageCreator = new ImageCreator();
+            try {
+                final Path path =  Paths.get("images/" + annealing.getIdentifier() + "_"+fileNameAppendix+".png");
+                Files.createDirectories(path.getParent());
+                imageCreator.saveImage(((Crystallization) annealing.getBestState()).getImage(), path.toFile());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return annealing;
     }
 }
