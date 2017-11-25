@@ -1,5 +1,7 @@
 package pl.edu.agh.mownit.lab4.problems.crystallization;
 
+import pl.edu.agh.mownit.lab4.problems.crystallization.neighbourhoods.Neighbourhood;
+
 import java.util.Random;
 
 /**
@@ -10,10 +12,12 @@ public class Crystallization {
     private final Pixel[][] image;
 
     private final int size;
+    private final Neighbourhood neighbourhood;
 
-    public Crystallization(final int size, final double density) {
+    public Crystallization(final int size, final double density, final Neighbourhood neighbourhood) {
         this.size = size;
         this.image = new Pixel[size][size];
+        this.neighbourhood = neighbourhood;
         generateImage(density);
     }
 
