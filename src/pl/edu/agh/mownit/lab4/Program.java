@@ -6,6 +6,7 @@ import pl.edu.agh.mownit.lab4.annealing.Plotter;
 import pl.edu.agh.mownit.lab4.problems.crystallization.Crystallization;
 import pl.edu.agh.mownit.lab4.problems.crystallization.ImageCreator;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,7 +25,7 @@ public class Program {
         final AnnealingSettingsReader reader = new AnnealingSettingsReader(args[0]);
         reader.readFromFile()
                 .map(AnnealingSimulator::new)
-
+                .filter(annealing -> !doEnergyPlotFileExist(annealing))
                 .map(as -> CompletableFuture.supplyAsync(() -> {
                     saveImage(as, "initial");
                     return as;
@@ -67,5 +68,10 @@ public class Program {
             }
         }
         return annealing;
+    }
+
+    private static boolean doEnergyPlotFileExist(final AnnealingSimulator annealing) {
+        final File f = new File("plots/"+annealing.getIdentifier()+"_plot.png");
+        return f.exists() && !f.isDirectory();
     }
 }
