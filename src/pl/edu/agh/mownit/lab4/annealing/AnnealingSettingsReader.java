@@ -2,7 +2,8 @@ package pl.edu.agh.mownit.lab4.annealing;
 
 import pl.edu.agh.mownit.lab4.problems.IProblem;
 import pl.edu.agh.mownit.lab4.problems.crystallization.Crystallization;
-import pl.edu.agh.mownit.lab4.problems.crystallization.neighbourhoods.Neighbourhood8Black;
+import pl.edu.agh.mownit.lab4.problems.crystallization.neighbourhoods.Neighbourhood;
+import pl.edu.agh.mownit.lab4.problems.crystallization.neighbourhoods.NeighbourhoodFactory;
 import pl.edu.agh.mownit.lab4.problems.sudoku.SudokuReader;
 
 import java.io.File;
@@ -17,7 +18,10 @@ import java.util.stream.Stream;
 /**
  * File structure:
  * Each line contains separate settings.
- * Problem type / file name for sudoku, temperature function, probability function, initial temperature, max iterations, identifier*
+ * Problem type  temperature function, probability function, initial temperature, max iterations, identifier*
+ * Problem type for sudoku: file name containing 'sudoku'
+ * Problem type for crystallization: crystal|image_size|density|neighbourhood
+ *  eg. crystal|256|0.4|8Black
  * Identifier is used to save results to file
  * Eg:
  * sudoku1.txt linear boltzmann 30000 1000000
@@ -59,7 +63,11 @@ public class AnnealingSettingsReader {
             return new SudokuReader(problemType).readFromFile();
         }
         if(problemType.contains("crystal")) {
-            return new Crystallization(512, 0.3, new Neighbourhood8Black());
+            final String[] settings = problemType.split("\\|");
+            final int size = Integer.parseInt(settings[1]);
+            final double density = Double.parseDouble(settings[2]);
+            final Neighbourhood neighbourhood = new NeighbourhoodFactory().create(settings[3]);
+            return new Crystallization(size, density, neighbourhood);
         }
         return null;
     }
