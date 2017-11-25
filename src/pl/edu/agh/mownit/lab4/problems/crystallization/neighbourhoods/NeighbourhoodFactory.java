@@ -6,16 +6,22 @@ package pl.edu.agh.mownit.lab4.problems.crystallization.neighbourhoods;
 public class NeighbourhoodFactory {
     public Neighbourhood create(final String name) {
         switch (name) {
-            case "4Cross":
-                return new Neighbourhood4Cross();
-            case "4Plus":
-                return new Neighbourhood4Plus();
-            case "6LongPlus":
-                return new Neighbourhood6LongPlus();
-            case "8Square":
-                return new Neighbourhood8Square();
-            case "16_8EmptySquare":
-                return new Neighbourhood16_8EmptySquare();
+            case "Cross":
+                return new Cross();
+            case "Plus":
+                return new Plus();
+            case "LongPlus":
+                return new LongPlus();
+            case "Square9":
+                return new Square9();
+            case "Square25":
+                return new Square25();
+            case "EmptySquare25":
+                return new EmptySquare25();
+            case "HorizontalLines":
+                return new HorizontalLines();
+            case "VerticalLines":
+                return new VerticalLines();
         }
         return null;
     }
