@@ -34,14 +34,8 @@ public class Program {
                 .map(future -> future.thenApply(Program::createGraph))
                 .map(future -> future.thenApply(annealing -> saveImage(annealing, "result")))
                 .collect(Collectors.toList())
-                .stream()
-                .map(CompletableFuture::join)
-                .forEach(Program::printAnnealingResults);
+                .forEach(CompletableFuture::join);
         executors.shutdown();
-    }
-
-    private static synchronized void printAnnealingResults(final AnnealingSimulator as) {
-        System.out.println(as.resultToString());
     }
 
     private static AnnealingSimulator createGraph(final AnnealingSimulator annealing) {

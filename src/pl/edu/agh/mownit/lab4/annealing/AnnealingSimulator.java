@@ -4,11 +4,13 @@ import pl.edu.agh.mownit.lab4.problems.IProblem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by Paweł Grochola on 11.11.2017.
  */
 public class AnnealingSimulator {
+    private static final Logger LOGGER = Logger.getLogger( AnnealingSimulator.class.getName());
     private final AnnealingSettings settings;
 
     private IProblem finalState = null;
@@ -21,10 +23,10 @@ public class AnnealingSimulator {
         this.settings = settings;
         bestState = settings.getInitialState();
         bestStateEnergy = settings.getInitialState().calculateEnergy();
-
     }
 
     public void simulate() {
+        LOGGER.info("Starting simulation of " + getIdentifier());
         int iteration = 0;
         IProblem currentState = settings.getInitialState();
         double currentEnergy = currentState.calculateEnergy();
@@ -48,10 +50,14 @@ public class AnnealingSimulator {
                 }
             }
             iteration++;
+            if (iteration % 100000 == 0) {
+                LOGGER.info(getIdentifier() + ": iteration " + iteration);
+            }
         }
         energyHistory.add(currentEnergy);
         finalState = currentState;
         totalIterations = iteration;
+        LOGGER.info("Finished. " + resultToString());
     }
 
     public IProblem getFinalState() {
