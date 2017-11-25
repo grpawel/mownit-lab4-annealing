@@ -68,6 +68,8 @@ public class AnnealingSettingsReader {
                 return iteration -> initialTemp * Math.pow(0.99, iteration);
             case "quadratic":
                 return iteration -> - initialTemp / (maxIterations*maxIterations) * iteration * iteration + initialTemp;
+            case "constant":
+                return iteration -> initialTemp;
             case "linear":
             default:
                 return iteration -> -initialTemp * iteration * 1.0 / maxIterations + initialTemp;
