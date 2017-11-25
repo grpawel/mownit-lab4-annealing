@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  * Created by Paweł Grochola on 11.11.2017.
  */
 public class AnnealingSimulator {
-    private static final Logger LOGGER = Logger.getLogger( AnnealingSimulator.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(AnnealingSimulator.class.getName());
     private final AnnealingSettings settings;
 
     private IProblem finalState = null;
@@ -58,6 +58,10 @@ public class AnnealingSimulator {
         finalState = currentState;
         totalIterations = iteration;
         LOGGER.info("Finished. " + resultToString());
+    }
+
+    public IProblem getInitialState() {
+        return settings.getInitialState();
     }
 
     public IProblem getFinalState() {
