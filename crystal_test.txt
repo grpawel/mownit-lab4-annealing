@@ -1,2 +1,5 @@
-crystal|256|0.3|8Black linear boltzmann 0.4  10000 crystal_test_square
-crystal|256|0.3|4Plus  linear boltzmann 0.4  10000 crystal_test_plus
+crystal|256|0.3|4Cross     linear boltzmann 10  500000  crystal_03_Cross_linear_500000
+crystal|256|0.3|4Plus      linear boltzmann 10  500000  crystal_03_Plus_linear_500000
+crystal|256|0.3|6LongPlus  linear boltzmann 10  500000  crystal_03_LongPlus_linear_500000
+crystal|256|0.3|8Square    linear boltzmann 10  500000  crystal_03_Square_linear_500000
+crystal|256|0.3|16_8EmptySquare  linear boltzmann 10  500000  crystal_03_EmptySquare_linear_500000

@@ -36,4 +36,8 @@ public abstract class Neighbourhood {
     protected int isPixelBlack(Pixel[][] pixels, int x, int y) {
         return safeGetPixel(pixels, x, y) == Pixel.BLACK ? 1 : 0;
     }
+
+    protected int isPixelWhite(Pixel[][] pixels, int x, int y) {
+        return safeGetPixel(pixels, x, y) == Pixel.WHITE ? 1 : 0;
+    }
 }
