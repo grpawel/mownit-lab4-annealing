@@ -6,7 +6,19 @@ import pl.edu.agh.mownit.lab4.problems.crystallization.Pixel;
  * Created by Paweł Grochola on 25.11.2017.
  */
 public abstract class Neighbourhood {
-    public abstract double calculateEnergy(Pixel[][] pixels);
+    public double calculateEnergy(final Pixel[][] pixels) {
+        int energy = 0;
+        for (int x = 0; x < pixels.length; x++) {
+            for (int y = 0; y < pixels[0].length; y++) {
+                if (pixels[x][y] == Pixel.BLACK) {
+                    energy += onePixelEnergy(x, y, pixels);
+                }
+            }
+        }
+        return energy;
+    }
+
+    protected abstract double onePixelEnergy(final int x, final int y, final Pixel[][] pixels);
 
     protected Pixel safeGetPixel(Pixel[][] pixels, int x, int y) {
         if (x < 0) {
