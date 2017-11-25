@@ -1,4 +1,6 @@
-package pl.edu.agh.mownit.lab4;
+package pl.edu.agh.mownit.lab4.annealing;
+
+import pl.edu.agh.mownit.lab4.problems.IProblem;
 
 public class AnnealingSettingsBuilder {
     private IProblem initialState;

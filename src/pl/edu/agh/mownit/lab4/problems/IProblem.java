@@ -1,4 +1,4 @@
-package pl.edu.agh.mownit.lab4;
+package pl.edu.agh.mownit.lab4.problems;
 
 /**
  * Created by Paweł Grochola on 11.11.2017.

@@ -1,5 +1,6 @@
-package pl.edu.agh.mownit.lab4;
+package pl.edu.agh.mownit.lab4.problems.sudoku;
 
+import pl.edu.agh.mownit.lab4.problems.IProblem;
 import pl.edu.agh.mownit.lab4.utils.RandomSet;
 import pl.edu.agh.mownit.lab4.utils.Utils;
 

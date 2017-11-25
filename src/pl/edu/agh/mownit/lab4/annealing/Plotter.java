@@ -1,4 +1,4 @@
-package pl.edu.agh.mownit.lab4;
+package pl.edu.agh.mownit.lab4.annealing;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;

@@ -1,4 +1,7 @@
-package pl.edu.agh.mownit.lab4;
+package pl.edu.agh.mownit.lab4.annealing;
+
+import pl.edu.agh.mownit.lab4.problems.IProblem;
+import pl.edu.agh.mownit.lab4.problems.sudoku.SudokuReader;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,5 +1,9 @@
 package pl.edu.agh.mownit.lab4;
 
+import pl.edu.agh.mownit.lab4.annealing.AnnealingSettingsReader;
+import pl.edu.agh.mownit.lab4.annealing.AnnealingSimulator;
+import pl.edu.agh.mownit.lab4.annealing.Plotter;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
