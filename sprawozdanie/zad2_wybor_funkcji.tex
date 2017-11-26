@@ -1,0 +1,69 @@
+\subsection{Wybór funkcji temperatury}
+Najpierw, podobnie jak w poprzednim zadaniu, wybrałem funkcję temperatury.
+Ustaliłem następujące parametry:
+\begin{itemize}
+\item Temperatura początkowa: 10000
+\item Liczba iteracji: 500000
+\item Rozmiar obrazu: 256
+\item Gęstość: 0.3
+\item Funkcja temperatury: ?
+\item Typ sąsiedztwa: krzyż 
+\end{itemize}
+
+\begin{minipage}{\textwidth}
+\begin{minipage}{.7\linewidth}
+$T(i) = T_0\cdot(1-0.00001)^{i}$\\
+  \includegraphics[width=\textwidth]{../images/crystal_1sf_03_10000_Cross_exp00001_500000_plot.png}
+\end{minipage}%
+\begin{minipage}{.3\linewidth}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp00001_500000_initial.png}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp00001_500000_result.png}
+\end{minipage}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+$T(i) = T_0\cdot(1-0.0001)^{i}$\\
+\begin{minipage}{.7\linewidth}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp0001_500000_plot.png}
+\end{minipage}%
+\begin{minipage}{.3\linewidth}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp0001_500000_initial.png}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp0001_500000_result.png}
+\end{minipage}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+$T(i) = T_0\cdot(1-0.001)^{i}$\\
+\begin{minipage}{.7\linewidth}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp001_500000_plot.png}
+\end{minipage}%
+\begin{minipage}{.3\linewidth}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp001_500000_initial.png}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp001_500000_result.png}
+\end{minipage}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+$T(i) = T_0\cdot(1-0.01)^{i}$\\
+\begin{minipage}{.7\linewidth}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp01_500000_plot.png}
+\end{minipage}%
+\begin{minipage}{.3\linewidth}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp01_500000_initial.png}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_exp01_500000_result.png}
+\end{minipage}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+$T(i) = \frac{-i\cdot T_0}{i_{max}} + T_0$\\
+\begin{minipage}{.7\linewidth}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_linear_500000_plot.png}
+\end{minipage}%
+\begin{minipage}{.3\linewidth}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_linear_500000_initial.png}
+  \includegraphics[width=\textwidth]{crystal_sf/crystal_1sf_03_10000_Cross_linear_500000_result.png}
+\end{minipage}
+\end{minipage}
+
+Pomimo wyglądu wykresu energii do dalszych testów wybrałem pierwszą funkcję, czyli
+$T(i) = T_0\cdot(1-0.0001)^{i}$.

@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{capt-of}
+\usepackage{polski}
+\usepackage{listings}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{lmodern} %boldface in listings
+
+\lstset{
+  language=java,
+  breaklines=true, showstringspaces=false, tabsize=2,
+  numbers=left,
+  frame=ltrb,framesep=5pt,rulecolor=\color{Black},
+  sensitive=false,
+  basicstyle=\small\ttfamily, 
+  commentstyle=\small\ttfamily,
+  stringstyle=\small\ttfamily\color{Mahogany},
+  morestring=[b]',
+  identifierstyle=\small\ttfamily\color{Blue},
+  numberstyle=\small\color{Blue},
+  keywordstyle=\small\ttfamily\bfseries
+  }
+  
+\title{ \textbf{Metody obliczeniowe w nauce i technice 2} \\ Laboratorium 4 \\ Symulowane wyżarzanie}
+\author{
+Paweł Grochola
+} 
+\date {6 listopada 2017}
+
+\begin{document}
+    \newcommand{\bigplot}[1]{
+        \begin{minipage}{\textwidth}
+            \begin{minipage}{.7\linewidth}
+                \includegraphics[width=\textwidth]{../plots/#1_plot.png}
+            \end{minipage}%
+            \begin{minipage}{.3\linewidth}
+                \includegraphics[width=\textwidth]{../images/#1_initial.png}
+                \includegraphics[width=\textwidth]{../images/#1_result.png}
+            \end{minipage}
+        \end{minipage}
+    }
+   
+\maketitle
+
+\bigplot{crystal_1sf_03_10000_Cross_exp00001_500000}
+%\input{zad1.tex}
+%\input{zad2.tex}
+%\input{zad3.tex}
+%\input{zad4.tex}
+\end{document}
