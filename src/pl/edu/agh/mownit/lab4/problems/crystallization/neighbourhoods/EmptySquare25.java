@@ -22,8 +22,8 @@ public class EmptySquare25 extends Neighbourhood {
         int whitePixels = 0;
         //inside square
         for (int i = -1; i <= 1; i++) {
-            for (int j = -1; j < 1; j++) {
-                whitePixels += isPixelWhite(pixels, x + i, y + i);
+            for (int j = -1; j <= 1; j++) {
+                whitePixels += isPixelWhite(pixels, x + i, y + j);
             }
         }
 
