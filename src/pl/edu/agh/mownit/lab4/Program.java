@@ -4,8 +4,7 @@ import pl.edu.agh.mownit.lab4.annealing.AnnealingSettingsReader;
 import pl.edu.agh.mownit.lab4.annealing.AnnealingSimulator;
 import pl.edu.agh.mownit.lab4.annealing.Plotter;
 import pl.edu.agh.mownit.lab4.problems.IProblem;
-import pl.edu.agh.mownit.lab4.problems.crystallization.Crystallization;
-import pl.edu.agh.mownit.lab4.problems.crystallization.ImageCreator;
+import pl.edu.agh.mownit.lab4.problems.ImageCreator;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,8 +31,14 @@ public class Program {
                     return annealing;
                 }, executors))
                 .map(future -> future.thenApply(Program::createGraph))
-                .map(future -> future.thenApply(annealing -> {saveImage(annealing.getInitialState(), annealing.getIdentifier(), "initial"); return annealing;}))
-                .map(future -> future.thenApply(annealing -> {saveImage(annealing.getBestState(), annealing.getIdentifier(), "result"); return annealing;}))
+                .map(future -> future.thenApply(annealing -> {
+                    saveImage(annealing.getInitialState(), annealing.getIdentifier(), "initial");
+                    return annealing;
+                }))
+                .map(future -> future.thenApply(annealing -> {
+                    saveImage(annealing.getBestState(), annealing.getIdentifier(), "result");
+                    return annealing;
+                }))
                 .collect(Collectors.toList())
                 .forEach(CompletableFuture::join);
         executors.shutdown();
@@ -42,7 +47,7 @@ public class Program {
     private static AnnealingSimulator createGraph(final AnnealingSimulator annealing) {
         final Plotter plotter = new Plotter(annealing.getEnergyHistory(), "Energy function", "Iteration", "Energy");
         try {
-            final Path path =  Paths.get("plots/" + annealing.getIdentifier() + "_plot.png");
+            final Path path = Paths.get("plots/" + annealing.getIdentifier() + "_plot.png");
             Files.createDirectories(path.getParent());
             plotter.saveGraph(path.toFile());
         } catch (IOException e) {
@@ -51,21 +56,19 @@ public class Program {
         return annealing;
     }
 
-    private static void saveImage(final IProblem problem, final String fileNameCore ,final String fileNameAppendix) {
-        if(problem instanceof Crystallization) {
-            final ImageCreator imageCreator = new ImageCreator();
-            try {
-                final Path path =  Paths.get("images/" + fileNameCore + "_"+fileNameAppendix+".png");
-                Files.createDirectories(path.getParent());
-                imageCreator.saveImage(((Crystallization) problem).getImage(), path.toFile());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    private static void saveImage(final IProblem problem, final String fileNameCore, final String fileNameAppendix) {
+        final ImageCreator imageCreator = new ImageCreator();
+        try {
+            final Path path = Paths.get("images/" + fileNameCore + "_" + fileNameAppendix + ".png");
+            Files.createDirectories(path.getParent());
+            imageCreator.saveImage(problem, path.toFile());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     private static boolean doEnergyPlotFileExist(final AnnealingSimulator annealing) {
-        final File f = new File("plots/"+annealing.getIdentifier()+"_plot.png");
+        final File f = new File("plots/" + annealing.getIdentifier() + "_plot.png");
         return f.exists() && !f.isDirectory();
     }
 }

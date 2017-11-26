@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by Paweł Grochola on 25.11.2017.
  */
-public class ImageCreator {
+public class CrystalImageCreator {
     public void saveImage(final Pixel[][] image, final File file) throws IOException {
         final BufferedImage bufferedImage = createImage(image);
         saveImage(bufferedImage, file);

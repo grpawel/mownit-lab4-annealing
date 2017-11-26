@@ -5,6 +5,8 @@ import pl.edu.agh.mownit.lab4.problems.crystallization.Crystallization;
 import pl.edu.agh.mownit.lab4.problems.crystallization.neighbourhoods.Neighbourhood;
 import pl.edu.agh.mownit.lab4.problems.crystallization.neighbourhoods.NeighbourhoodFactory;
 import pl.edu.agh.mownit.lab4.problems.sudoku.SudokuReader;
+import pl.edu.agh.mownit.lab4.problems.travellingsalesman.PointsGenerator;
+import pl.edu.agh.mownit.lab4.problems.travellingsalesman.TravellingSalesman;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +23,9 @@ import java.util.stream.Stream;
  * Problem type  temperature function, probability function, initial temperature, max iterations, identifier*
  * Problem type for sudoku: file name containing 'sudoku'
  * Problem type for crystallization: crystal|image_size|density|neighbourhood
- *  eg. crystal|256|0.4|8Black
+ *  eg. crystal|256|0.4|Square9
+ * Problem type for tsp: tsp|size|points_amount|swap_type|generation
+ *
  * Identifier is used to save results to file
  * Eg:
  * sudoku1.txt linear boltzmann 30000 1000000
@@ -67,6 +71,15 @@ public class AnnealingSettingsReader {
             final double density = Double.parseDouble(settings[2]);
             final Neighbourhood neighbourhood = new NeighbourhoodFactory().create(settings[3]);
             return new Crystallization(size, density, neighbourhood);
+        }
+        if(problemType.contains("tsp")) {
+            final String[] settings = problemType.split("\\|");
+            final int size = Integer.parseInt(settings[1]);
+            final int amount = Integer.parseInt(settings[2]);
+            final TravellingSalesman.SwapStrategy swapStrategy = TravellingSalesman.SwapStrategy.valueOf(settings[3]);
+            final PointsGenerator.Type generatorType = PointsGenerator.Type.valueOf(settings[4]);
+            final PointsGenerator generator = new PointsGenerator(size, amount, generatorType);
+            return new TravellingSalesman(generator, swapStrategy);
         }
         return null;
     }
