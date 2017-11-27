@@ -15,6 +15,7 @@ public class AnnealingSimulator {
 
     private IProblem finalState = null;
     private IProblem bestState;
+    private double initialEnergy;
     private double bestStateEnergy;
     private int totalIterations = 0;
     private final List<Double> energyHistory = new ArrayList<>();
@@ -30,6 +31,7 @@ public class AnnealingSimulator {
         int iteration = 0;
         IProblem currentState = settings.getInitialState();
         double currentEnergy = currentState.calculateEnergy();
+        initialEnergy = currentEnergy;
         while (iteration < settings.getMaxIterations() && !currentState.isSolved()) {
             energyHistory.add(currentEnergy);
             final Double currentTemp = settings.getTempFunction().calculate(iteration);
@@ -84,7 +86,11 @@ public class AnnealingSimulator {
         return energyHistory;
     }
 
+    public double getInitialEnergy() {
+        return initialEnergy;
+    }
+
     public String resultToString() {
-        return settings.toString() + "\t" + "iterations: " + totalIterations + " energy: " + bestStateEnergy;
+        return settings.toString() + "\t" + "iterations: " + totalIterations + " energy: " + bestStateEnergy +" initial: " + initialEnergy;
     }
 }
