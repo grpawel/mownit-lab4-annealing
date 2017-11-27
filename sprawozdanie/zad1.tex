@@ -1,0 +1,71 @@
+\section{Zadanie 1}
+\subsection{Treść}
+Wygeneruj chmurę n losowych punktów w 2D, a następnie zastosuj algorytm symulowanego
+wyżarzania do przybliżonego rozwiązania problemu komiwojażera dla tych punktów.\\
+a) Przedstaw wizualizację otrzymanego rozwiązania dla 3 różnych wartości n oraz 3
+różnych układów punktów w 2D (rozkład jednostajny, rozkład normalny z czterema
+różnymi grupami parametrów, dziewięć odseparowanych grup punktów).\\
+b) Zbadaj wpływ sposobu generacji sąsiedniego stanu (consecutive swap vs. arbitrary
+swap) oraz funkcji zmiany temperatury na zbieżność procesu optymalizacji.\\
+c) Przedstaw wizualizację (saoptimset) działania procedury minimalizującej funkcję
+celu.
+\subsection{Wstęp}
+Niestety w tym zadaniu miałem problem ze zbliżaniem się do energii minimalnej dla większej ilości punktów. W pewnym momencie żaden następny stan nie osiąga niższej energii niż poprzedni. Nie byłem w stanie znaleźć źródła problemu. Problem występuje niezależnie od parametrów symulacji. Jedynie dla niewielkiej ilości punktów znajdywane jest optymalne rozwiązanie.
+
+\subsection{Rozkład normalny}
+Parametry:
+\begin{itemize}
+    \item Temperatura początkowa: 100
+    \item Liczba iteracji: 1000000
+    \item Rozmiar obrazu: 512x512
+    \item Funkcja temperatury: $T(i) = \frac{-i\cdot T_0}{i_{max}} + T_0$ (f. liniowa)
+    \item Liczba punktów: ?
+    \item Generowanie sąsiedniego stanu: consecutive
+\end{itemize}
+\bigresult{tsp_512_10_cons_unif_exp00001_100_1000000}{Energia początkowa: 2529.3, końcowa: 1403.7, liczba punktów: 10\\}
+\bigresult{tsp_512_100_cons_unif_exp00001_100_1000000}{Energia początkowa: 25384.3, końcowa: 21638.8, liczba punktów: 100\\}
+\bigresult{tsp_512_1000_cons_unif_exp00001_100_1000000}{Energia początkowa: 262692.9, końcowa: 244416.6, liczba punktów: 1000\\}
+
+
+\subsection{Odseparowane grupy}
+\bigresult{tsp_512_10_cons_mugr_exp00001_100_1000000}{Energia początkowa: 3365.0, końcowa: 1901.2, liczba punktów: 10}
+\bigresult{tsp_512_100_cons_mugr_exp00001_100_1000000}{Energia początkowa: 29691.7, końcowa: 24443.6, liczba punktów: 100}
+\bigresult{tsp_512_1000_cons_mugr_exp00001_100_1000000}{Energia początkowa: 296512.5, końcowa: 282814.1, liczba punktów: 1000\\}
+
+
+\subsection{Sposób generowania sąsiedniego stanu}
+Parametry:
+\begin{itemize}
+    \item Temperatura początkowa: 100
+    \item Liczba iteracji: 1000000
+    \item Rozmiar obrazu: 512x512
+    \item Funkcja temperatury: $T(i) = T_0\cdot(1-0.00001)^{i}$
+    \item Liczba punktów: ?
+    \item Generowanie sąsiedniego stanu: ?
+\end{itemize}
+\bigresult{tsp_512_10_cons_unif_exp00001_100_1000000_a}{consecutive, liczba punktów: 10, energia początkowa: 3028.9, końcowa: 1438.3\\}
+\bigresult{tsp_512_10_arbi_unif_exp00001_100_1000000_a}{arbitrary, liczba punktów: 10, energia początkowa: 3028.9, końcowa: 1438.3\\}
+\bigresult{tsp_512_100_cons_unif_exp00001_100_1000000_a}{consecutive, liczba punktów: 10, energia początkowa: 26274.7, końcowa: 21225.0\\}
+\bigresult{tsp_512_100_arbi_unif_exp00001_100_1000000_a}{arbitrary, liczba punktów: 10, energia początkowa: 26274.7, końcowa: 21093.8\\}
+\bigresult{tsp_512_1000_cons_unif_exp00001_100_1000000_a}{consecutive, liczba punktów: 10, energia początkowa: 264528.4, końcowa: 248557.4\\}
+\bigresult{tsp_512_1000_arbi_unif_exp00001_100_1000000_a}{arbitrary, liczba punktów: 10, energia początkowa: 264528.4, końcowa: 247855.2\\}
+Niestety nie widać większej różnicy z uwagi na niezbieganie do minimum funkcji energii. W poprawnie działającym programie strategia consecutive powinna dawać lepsze rezultaty.
+
+\subsection{Różne funkcje temperatury}
+Parametry:
+\begin{itemize}
+    \item Temperatura początkowa: 100
+    \item Liczba iteracji: 1000000
+    \item Rozmiar obrazu: 512x512
+    \item Gęstość: 0.3
+    \item Funkcja temperatury: ?
+    \item Liczba punktów: 10
+    \item Generowanie sąsiedniego stanu: arbitrary
+\end{itemize}
+\bigplot{tsp_512_10_arbi_unif_linear_100_1000000_b}{$T(i) = \frac{-i\cdot T_0}{i_{max}} + T_0$(f. liniowa), energia początkowa: 3815.8, końcowa: 1689.6\\}
+\bigplot{tsp_512_10_arbi_unif_exp00001_100_1000000_b}{$T(i) = T_0\cdot(1-0.00001)^{i}$, energia początkowa: 1989.2, końcowa: 1220.9\\}
+\bigplot{tsp_512_10_arbi_unif_exp0001_100_1000000_b}{$T(i) = T_0\cdot(1-0.0001)^{i}$, energia początkowa: 2329.5, końcowa: 1533.8\\}
+\bigplot{tsp_512_10_arbi_unif_exp001_100_1000000_b}{$T(i) = T_0\cdot(1-0.001)^{i}$, energia początkowa: 2553.6, końcowa: 1602.9\\}
+\bigplot{tsp_512_10_arbi_unif_exp01_100_1000000_b}{$T(i) = T_0\cdot(1-0.01)^{i}$, energia początkowa: 2974.1, końcowa: 1487.6\\}
+\bigplot{tsp_512_10_arbi_unif_constant_100_1000000_b}{$T(i) = T_0$, energia początkowa: 2855.1, końcowa: 1517.3\\}
+Im temperatura szybciej maleje, tym szybciej mniej optymalne stany przestają być akceptowane

@@ -7,14 +7,299 @@ się, a w dalszej odpychają się) i dokonaj jej minimalizacji za pomocą algory
 symulowanego wyżarzania. W jaki sposób można generować stany sąsiednie? Jak róż-
 nią się uzyskane wyniki w zależności od rodzaju sąsiedztwa, wybranej funkcji energii i
 szybkości spadku temperatury?
-\section{Kod}
+\section{Wstęp}
 Kod odpowiedzialny za problem krystalizacji znajduje się w TODO\_repo.
 \begin{itemize}
 \item Najpierw generowany jest losowy obraz zawierający określoną ilość punktów.
 \item Następny stan jest generowany przez zamianę losowych dwóch punktów ze sobą, niezależnie od ich koloru.
 \item Energia jest obliczana jako suma energii każdego czarnego punktu na podstawie typu sąsiedztwa.
-\item Warunkiem zatrzymania jest jedynie liczba iteracji; przy implementacji uznałem że minimalna energia jest nieznana i nie sądziłem, że energia może osiągnąć 0 jak to miało miejsce w kilku przypadkach.
+\item Warunkiem zatrzymania jest jedynie liczba iteracji; przy implementacji uznałem że minimalna energia jest nieznana i nie sądziłem, że energia może osiągnąć 0 jak to miało miejsce w kilku symulacjach.
 \end{itemize}
 
-\input{zad2_wybor_funkcji}
-\input{zad2_wybor_energii}
+\section{Sąsiedztwa}
+Czarny kwadrat oznacza, że funkcja energii daje 1 za czarny piksel znajdujący się w tym miejscu. '?' oznacza nie branie danego sąsiaada pod uwagę, a B - funkcja energii liczy biały piksel podobnie jak czarny.
+\begin{itemize}
+    \item Krzyż:
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \cellcolor{black} & ? & \cellcolor{black}\\
+        \hline
+        ? & X & ?\\
+        \hline
+        \cellcolor{black} & ? & \cellcolor{black}\\
+        \hline
+    \end{tabular}
+\item Połówka krzyża:
+\begin{tabular}{|c|c|c|}
+    \hline
+    ? & ? & \cellcolor{black}\\
+    \hline
+    ? & X & ?\\
+    \hline
+    ? & ? & \cellcolor{black}\\
+    \hline
+\end{tabular}
+\item Plus
+\begin{tabular}{|c|c|c|}
+    \hline
+    ? & \cellcolor{black} & ? \\
+    \hline
+    \cellcolor{black} & X &\cellcolor{black}\\
+    \hline
+   ? &\cellcolor{black} &? \\
+   \hline
+\end{tabular}
+
+\item Wydłużony plus
+\begin{tabular}{|c|c|c|}
+    \hline
+    ? & \cellcolor{black} & ? \\
+    \hline
+    ? & \cellcolor{black} & ? \\
+    \hline
+    \cellcolor{black} & X & \cellcolor{black} \\
+    \hline
+    ? & \cellcolor{black} & ? \\
+    \hline
+    ? & \cellcolor{black} & ? \\
+    \hline
+    
+\end{tabular}
+\item Rozstrzelony krzyż
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \cellcolor{black} & ? & ? &?&\cellcolor{black}\\
+    \hline
+    ? & ?& ? &?&?\\
+    \hline
+    ? & ? & X&?&?\\ 
+    \hline
+    ? & ? & ?&?&?\\ 
+    \hline
+    \cellcolor{black} & ? & ?&?&\cellcolor{black}\\ 
+    \hline
+\end{tabular}
+\item Rozstrzelony plus
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    ? & ? & \cellcolor{black} &?&?\\
+    \hline
+    ? & ? & ? &?&?\\
+    \hline
+    \cellcolor{black} & ? & X&?&\cellcolor{black}\\ 
+    \hline
+    ? & ? & ?&?&?\\ 
+    \hline
+    ? & ? & \cellcolor{black}&?&?\\ 
+    \hline
+\end{tabular}
+\item Biało-czarny krzyż
+\begin{tabular}{|c|c|c|}
+    \hline
+    B & ? &\cellcolor{black} \\
+    \hline
+    ? & X & ? \\
+    \hline
+    B & ? & \cellcolor{black} \\
+    \hline
+\end{tabular}
+\item Kwadrat 3x3
+\begin{tabular}{|c|c|c|}
+    \hline
+    \cellcolor{black} &\cellcolor{black} & \cellcolor{black} \\
+    \hline
+    \cellcolor{black} & X & \cellcolor{black} \\
+    \hline
+    \cellcolor{black}C &\cellcolor{black}C & \cellcolor{black}C \\
+    \hline
+\end{tabular}
+\item Kwadrat 5x5
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \cellcolor{black}C & \cellcolor{black}C & \cellcolor{black} &\cellcolor{black}C&\cellcolor{black}C\\
+    \hline
+    \cellcolor{black}C & \cellcolor{black}C & \cellcolor{black} &\cellcolor{black}C&\cellcolor{black}C\\
+    \hline
+    \cellcolor{black}C & \cellcolor{black}C & X &\cellcolor{black}C&\cellcolor{black}C\\
+    \hline
+    \cellcolor{black}C & \cellcolor{black}C & \cellcolor{black} &\cellcolor{black}C&\cellcolor{black}C\\
+    \hline
+    \cellcolor{black}C & \cellcolor{black}C & \cellcolor{black} &\cellcolor{black}C&\cellcolor{black}C\\
+    \hline
+\end{tabular}
+\item Pusty kwadrat 5x5
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \cellcolor{black}C & \cellcolor{black}C & \cellcolor{black} &\cellcolor{black}C&\cellcolor{black}C\\
+    \hline
+    \cellcolor{black}C & B & B &B&\cellcolor{black}C\\
+    \hline
+    \cellcolor{black}C &B & X &B&\cellcolor{black}C\\
+    \hline
+    \cellcolor{black}C & B& B&B&\cellcolor{black}C\\
+    \hline
+    \cellcolor{black}C & \cellcolor{black}C & \cellcolor{black} &\cellcolor{black}C&\cellcolor{black}C\\
+    \hline
+\end{tabular}
+\item Poziome linie 3x3
+\begin{tabular}{|c|c|c|}
+    \hline
+    \cellcolor{black}C & \cellcolor{black}C & \cellcolor{black}C \\
+    \hline
+    ? & X & ? \\
+    \hline
+    \cellcolor{black}C & \cellcolor{black}C &\cellcolor{black}C \\
+    \hline
+\end{tabular}
+\item Pionowe linie 3x3
+\begin{tabular}{|c|c|c|}
+    \hline
+    \cellcolor{black}C & ? & \cellcolor{black}C \\
+    \hline
+   \cellcolor{black}C& X & \cellcolor{black}C \\
+    \hline
+    \cellcolor{black}C & ? & \cellcolor{black}C \\
+    \hline
+\end{tabular}
+
+\end{itemize}
+\subsection{Wybór funkcji temperatury}
+Najpierw, podobnie jak w poprzednim zadaniu, wybrałem funkcję temperatury.
+Ustaliłem następujące parametry:
+\begin{itemize}
+    \item Temperatura początkowa: 10000
+    \item Liczba iteracji: 500000
+    \item Rozmiar obrazu: 256
+    \item Gęstość: 0.3
+    \item Funkcja temperatury: ?
+    \item Typ sąsiedztwa: krzyż 
+\end{itemize}
+\bigplot{crystal_1sf_03_10000_Cross_exp00001_500000}{$T(i) = T_0\cdot(1-0.00001)^{i}$\\}
+\bigplot{crystal_1sf_03_10000_Cross_exp0001_500000}{$T(i) = T_0\cdot(1-0.0001)^{i}$\\}
+\bigplot{crystal_1sf_03_10000_Cross_exp001_500000}{$T(i) = T_0\cdot(1-0.001)^{i}$\\}
+\bigplot{crystal_1sf_03_10000_Cross_exp01_500000}{$T(i) = T_0\cdot(1-0.01)^{i}$\\}
+\bigplot{crystal_1sf_03_10000_Cross_linear_500000}{$T(i) = \frac{-i\cdot T_0}{i_{max}} + T_0$\\}
+
+
+Pomimo wyglądu wykresu energii do dalszych testów wybrałem pierwszą funkcję, czyli
+$T(i) = T_0\cdot(1-0.0001)^{i}$. Dzięki obniżeniu temperatury początkowej ta funkcja zacznie zbiegać do minimalnej energii po odpowiedniej liczbie iteracji.
+
+
+\subsection{Wybór energii początkowej}
+Po wybraniu funkcji sprawdziłem jaką początkową temperaturę najlepiej wybrać do symulacji.
+Parametry:
+\begin{itemize}
+    \item Temperatura początkowa: ?
+    \item Liczba iteracji: 500000
+    \item Rozmiar obrazu: 256
+    \item Gęstość: 0.3
+    \item Funkcja temperatury: $T(i) = T_0(1-0.00001)^{i}$
+    \item Typ sąsiedztwa: krzyż 
+\end{itemize}
+\bigplot{crystal_1sf_03_10000_Cross_exp00001_500000}{$T_0=10000$\\}
+\bigplot{crystal_1sf_03_1000_Cross_exp00001_500000}{$T_0=1000$\\}
+\bigplot{crystal_1sf_03_100_Cross_exp00001_500000}{$T_0=100$\\}
+\bigplot{crystal_1sf_03_10_Cross_exp00001_500000}{$T_0=10$\\}
+\bigplot{crystal_1sf_03_1_Cross_exp00001_500000}{$T_0=1$\\}
+\bigplot{crystal_1sf_03_05_Cross_exp00001_500000}{$T_0=0.5$\\}
+\bigplot{crystal_1sf_03_01_Cross_exp00001_500000}{$T_0=0.1$\\}
+
+Spośród powyższych energii najlepszą charakterystykę wydaje się dawać energia początkowa równa 100, jednak liczba iteracji jest zbyt mała.
+
+\subsubsection{Energia początkowa przy większej liczbie iteracji}
+Przeprowadziłem kolejne symulacje z energią ok. 100 i liczbą iteracji 1 000 000:\\
+\bigplot{crystal_1sf_03_100_Cross_exp00001_1000000}{$T_0=100$\\}
+\bigplot{crystal_1sf_03_200_Cross_exp00001_1000000}{$T_0=200$\\}
+\bigplot{crystal_1sf_03_50_Cross_exp00001_1000000}{$T_0=50$\\}
+Ostatecznie wybrałem początkową temperaturę równą 100.
+
+
+
+\subsection{Różne rodzaje sąsiedztwa}
+\subsubsection{Gęstość $\delta$=0.1}
+Przy gęstości $\delta$=0.1 energia dla większości obrazów osiąga minimum równe 0.\\
+\bigresult{crystal_3_01_100_Cross_exp00001_1000000}{Krzyż\\}\\
+Algorytm minimalizuje funkcję energii, więc w wynikowym obrazie nie pojawia się żaden framgent krzyża - zawiera wyłącznie pojedyncze punkty, pionowe i poziome linie.\\
+\bigresult{crystal_3_01_100_HalfEmptyCross_exp00001_1000000}{Połówka krzyża\\}
+Obraz jest niemal losowy, jedynie piksele sąsiadują ze sobą w poziomie lub pionie, a nie na ukos.
+\bigresult{crystal_3_01_100_Plus_exp00001_1000000}{Plus\\}
+W tym obrazie natomiast nie pojawiają się żadne pionowe ani poziome linie.\\
+\bigresult{crystal_3_01_100_LongPlus_exp00001_1000000}{Wydłużony plus\\}
+Nie ma różnic w porównaniu do poprzedniego obrazu.\\
+\bigresult{crystal_3_01_100_FarCross_exp00001_1000000}{Rozstrzelony krzyż\\}
+Przy tym sąsiedztwie energia początkowego, losowego obrazu była dość niska, więc po symulacji obraz wciąż wygląda na losowy.\\
+\bigresult{crystal_3_01_100_FarPlus_exp00001_1000000}{Rozstrzelony plus\\}
+Podobnie jak poprzednio, obraz wygląda na losowy.\\
+\bigresult{crystal_3_01_100_HalfWhiteCross_exp00001_1000000}{Biało-czarny krzyż\\}
+Przy tej symulacji nie została wykonana żadna zamiana. Definicja sąsiedztwa daje taką samą wartość energii dla obrazu przy dowolnym przemieszczeniu punktów. Wartość końcowa energii to $256\cdot 256\cdot 0.1\cdot 0.5 = 13.107$. Wskazuje to na błąd w implementacji - jeżeli nowy stan ma taką samą energię jak poprzedni, to jest odrzucany a nie przyjmowany z pewnym prawdopodobieństwem.\\
+\bigresult{crystal_3_01_100_Square9_exp00001_1000000}{Kwadrat 3x3\\}
+Wszystkie piksele są osobno - żaden nie styka się z innym.\\
+\bigresult{crystal_3_01_100_Square25_exp00001_1000000}{Kwadrat 5x5\\}
+Odległości między pikselami są większe, przez co niektóre muszą stykać się z innymi.\\ 
+\bigresult{crystal_3_01_100_EmptySquare25_exp00001_1000000}{Pusty kwadrat 5x5\\}
+Pojawiają się ziarna - sąsiedztwo pozwala na sąsiadowanie ze sobą punktów w grupkach ok. 3x3\\
+\bigresult{crystal_3_01_100_HorizontalLines_exp00001_1000000}{Poziome linie 3x3\\}
+Sąsiedztwo umożliwia tworzenie wyłącznie poziomych linii różnych długości - piksele sąsiadujące ze sobą w pionie są rozdzielane.\\
+\bigresult{crystal_3_01_100_VerticalLines_exp00001_1000000}{Pionowe linie 3x3\\}
+Obraz jest podobny do poprzedniego, tylko obrócony.\\
+
+
+\subsubsection{Gęstość $\delta$=0.3}
+\bigresult{crystal_3_03_100_Cross_exp00001_1000000}{Krzyż\\}
+Poziome i pionowe linie są znacznie wyraźniejsze.\\
+\bigresult{crystal_3_03_100_HalfEmptyCross_exp00001_1000000}{Połówka krzyża\\}
+Obraz jest podobny do poprzedniego. Jedynie wartość początkowa energii jest dwukrotnie mniejsza - sąsiedztwo bierze pod uwagę 2 a nie 4 piksele.\\
+\bigresult{crystal_3_03_100_Plus_exp00001_1000000}{Plus\\}
+Obraz składa się z ukośnych linii.\\
+\bigresult{crystal_3_03_100_LongPlus_exp00001_1000000}{Wydłużony plus\\}
+Jak poprzedni, obraz składa się z ukośnych linii, jednak odstępy między nimi są większe.\\
+\bigresult{crystal_3_03_100_FarCross_exp00001_1000000}{Rozstrzelony krzyż\\}
+Widać połączenie poziomych i pionowych linii z ziarnami.\\
+\bigresult{crystal_3_03_100_FarPlus_exp00001_1000000}{Rozstrzelony plus\\}
+Tym razem linie są ukośne, ale wciąż widać ziarna.\\
+\textbf{Biało-czarny krzyż} - pominięty\\
+\bigresult{crystal_3_03_100_Square9_exp00001_1000000}{Kwadrat 3x3\\}
+Piksele są rozmieszczone możliwie osobno.\\
+\bigresult{crystal_3_03_100_Square25_exp00001_1000000}{Kwadrat 5x5\\}
+Zaczynają się tworzyć ,,labirynty''.\\
+\bigresult{crystal_3_03_100_EmptySquare25_exp00001_1000000}{Pusty kwadrat 5x5\\}
+Pojawiają się duże "ziarna".\\
+\bigresult{crystal_3_03_100_HorizontalLines_exp00001_1000000}{Poziome linie 3x3\\}
+\textbf{Pionowe linie} - pominięty\\
+
+
+\subsubsection{Gęstość $\delta$=0.4}
+Dla tej gęstości minimalna energia jest już większa niż 0, czasami znacznie.\\
+\bigresult{crystal_3_04_100_Cross_exp00001_1000000}{Krzyż\\}
+\bigresult{crystal_3_04_100_HalfEmptyCross_exp00001_1000000}{Połówka krzyża\\}
+\bigresult{crystal_3_04_100_Plus_exp00001_1000000}{Plus\\}
+Obraz składa się z ukośnych linii.\\
+\bigresult{crystal_3_04_100_LongPlus_exp00001_1000000}{Wydłużony plus\\}
+\bigresult{crystal_3_04_100_FarCross_exp00001_1000000}{Rozstrzelony krzyż\\}
+\bigresult{crystal_3_04_100_FarPlus_exp00001_1000000}{Rozstrzelony plus\\}
+\textbf{Biało-czarny krzyż} - pominięty\\
+\bigresult{crystal_3_04_100_Square9_exp00001_1000000}{Kwadrat 3x3\\}
+\bigresult{crystal_3_04_100_Square25_exp00001_1000000}{Kwadrat 5x5\\}
+\bigresult{crystal_3_04_100_EmptySquare25_exp00001_1000000}{Pusty kwadrat 5x5\\}
+\bigresult{crystal_3_04_100_HorizontalLines_exp00001_1000000}{Poziome linie 3x3\\}
+\textbf{Pionowe linie} - pominięty\\
+
+\subsubsection{Gęstość $\delta$=0.6 - dodatkowo}
+\bigresult{crystal_3_06_100_Cross_exp00001_1000000}{Krzyż\\}
+\bigresult{crystal_3_06_100_HalfEmptyCross_exp00001_1000000}{Połówka krzyża\\}
+\bigresult{crystal_3_06_100_Plus_exp00001_1000000}{Plus\\}
+\bigresult{crystal_3_06_100_LongPlus_exp00001_1000000}{Wydłużony plus\\}
+\bigresult{crystal_3_06_100_FarCross_exp00001_1000000}{Rozstrzelony krzyż\\}
+\bigresult{crystal_3_06_100_FarPlus_exp00001_1000000}{Rozstrzelony plus\\}
+\textbf{Biało-czarny krzyż} - pominięty\\
+\bigresult{crystal_3_06_100_Square9_exp00001_1000000}{Kwadrat 3x3\\}
+\bigresult{crystal_3_06_100_Square25_exp00001_1000000}{Kwadrat 5x5\\}
+\bigresult{crystal_3_06_100_EmptySquare25_exp00001_1000000}{Pusty kwadrat 5x5\\}
+\bigresult{crystal_3_06_100_HorizontalLines_exp00001_1000000}{Poziome linie 3x3\\}
+\textbf{Pionowe linie} - pominięty\\
+
+
+\subsection{Różne tempa schładzania}
+\bigresult{crystal_3_03_100_Square25_exp00001_100000}{$T(i) = T_0\cdot(1-0.00001)^{i}$\\}
+\bigresult{crystal_3_03_100_Square25_exp0001_100000}{$T(i) = T_0\cdot(1-0.0001)^{i}$\\}
+\bigresult{crystal_3_03_100_Square25_exp001_100000}{$T(i) = T_0\cdot(1-0.001)^{i}$\\}

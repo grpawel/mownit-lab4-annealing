@@ -1,0 +1,126 @@
+\section{Zadanie 3 - sudoku}
+\subsection{Treść}
+Napisz program poszukujący rozwiązania łamigłówki Sudoku za pomocą symulowanego
+wyżarzania. Plansza 9 x 9 ma zostać wczytana z pliku tekstowego, w którym pola puste
+zaznaczone są znakiem x. Jako funkcję kosztu przyjmij sumę powtórzeń cyfr występujących
+w wierszach bloku 9 x 9, kolumnach bloku 9 x 9 oraz blokach 3 x 3. Zaproponuj
+metodę generacji stanu sąsiedniego. Przedstaw zależność liczby iteracji algorytmu od
+liczby pustych miejsc na planszy. Czy Twój program jest w stanie znaleźć poprawne
+rozwiązanie dla każdej z testowanych konfiguracji wejściowych?
+
+\subsection{Wstęp}
+Przygotowując konfigurację początkową każdy kwadrat 3x3 wypełniam w losowy sposób brakującymi cyframi.
+Sąsiedni stan znajdowany jest przez zamianę dwóch wpisanych przez program cyfr w wylosowanym kwadracie.
+Energia obliczana jest jako liczba powtarzających się cyfr w kolumnach i rzędach (w kwadratach nie ma żadnych powtórzeń). Inaczej niż w poprzednich zadaniach przerywam symulację gdy zostanie znalezione rozwiązanie.
+\subsection{Wybór temperatury początkowej}
+Parametry:
+\begin{itemize}
+    \item Temperatura początkowa: ?
+    \item Liczba iteracji: 100000
+    \item Funkcja temperatury: $T(i) = \frac{-i\cdot T_0}{i_{max}} + T_0$
+    \item Plansza testowa (prosta):\\
+    \begin{tabular}{ccc|ccc|ccc}
+     & &3& & & &9&4& \\ 
+    &1&8&6& & & &7& \\ 
+    & &9& &8&4& &5&1\\ \hline
+    9& & & &1& & &6& \\ 
+    &2& &7& & & &1& \\ 
+    & &5& &3& &8& & \\ \hline
+    &3& & &7&1&2& &6\\ 
+    & & & & & & & & \\ 
+    &6& &2& &9& & &4\\ 
+    \end{tabular}
+\end{itemize}
+\onlyplot{z_sud1_lin_100000_100000}{Temperatura początkowa: 100000\\Energia początkowa: 38.0\\Energia końcowa: 28.0\\Liczba iteracji: 100000}
+\onlyplot{z_sud1_lin_10000_100000}{Temperatura początkowa: 10000\\Energia początkowa: 45.0\\Energia końcowa: 26.0\\Liczba iteracji: 100000}
+\onlyplot{z_sud1_lin_1000_100000}{Temperatura początkowa: 1000\\Energia początkowa: 42.0\\Energia końcowa: 21.0\\Liczba iteracji: 100000}
+\onlyplot{z_sud1_lin_100_100000}{Temperatura początkowa: 100\\Energia początkowa: 41.0\\Energia końcowa: 11.0\\Liczba iteracji: 100000}
+\onlyplot{z_sud1_lin_10_100000}{Temperatura początkowa: 10\\Energia początkowa: 48.0\\Energia końcowa: 4.0\\Liczba iteracji: 100000}
+\onlyplot{z_sud1_lin_1_100000}{Temperatura początkowa: 1\\Energia początkowa: 50.0\\Energia końcowa: 0.0\\Liczba iteracji: 46403}
+\onlyplot{z_sud1_lin_09_100000}{Temperatura początkowa: 0.9\\Energia początkowa: 45.0\\Energia końcowa: 0.0\\Liczba iteracji: 50117}
+\onlyplot{z_sud1_lin_08_100000}{Temperatura początkowa: 0.8\\Energia początkowa: 44.0\\Energia końcowa: 0.0\\Liczba iteracji: 29253}
+\onlyplot{z_sud1_lin_07_100000}{Temperatura początkowa: 0.7\\Energia początkowa: 47.0\\Energia końcowa: 0.0\\Liczba iteracji: 20646}
+\onlyplot{z_sud1_lin_06_100000}{Temperatura początkowa: 0.6\\Energia początkowa: 36.0\\Energia końcowa: 0.0\\Liczba iteracji: 13391}
+\onlyplot{z_sud1_lin_05_100000}{Temperatura początkowa: 0.5\\Energia początkowa: 40.0\\Energia końcowa: 0.0\\Liczba iteracji: 6388}
+\onlyplot{z_sud1_lin_04_100000}{Temperatura początkowa: 0.4\\Energia początkowa: 41.0\\Energia końcowa: 0.0\\Liczba iteracji: 2007}
+\onlyplot{z_sud1_lin_03_100000}{Temperatura początkowa: 0.3\\Energia początkowa: 48.0\\Energia końcowa: 0.0\\Liczba iteracji: 23585}
+\onlyplot{z_sud1_lin_02_100000}{Temperatura początkowa: 0.2\\Energia początkowa: 47.0\\Energia końcowa: 0.0\\Liczba iteracji: 2144}
+\onlyplot{z_sud1_lin_01_100000}{Temperatura początkowa: 0.1\\Energia początkowa: 45.0\\Energia końcowa: 0.0\\Liczba iteracji: 8346}
+
+Wybieram temperaturę początkową równą 0.5 - z eksperymentów wynika że daje dosć dobre rezultaty.
+
+\subsection{Wybór funkcji temperatury}
+\onlyplot{z_sud1_lin_05_10000}{$T(i) = \frac{-i\cdot T_0}{i_{max}} + T_0$ (f. liniowa)\\Energia początkowa: 50.0\\Energia końcowa: 0.0\\Liczba iteracji: 6921}
+\onlyplot{z_sud1_quad_05_10000}{$T(i)=\frac{-T_0}{i_{max}^2}\cdot i^2 + T_0$(f. kwadratowa)\\Energia początkowa: 41.0\\Energia końcowa: 0.0\\Liczba iteracji: 4552}
+\onlyplot{z_sud1_exp00001_05_10000}{$T(i) = T_0\cdot(1-0.00001)^{i}$\\Energia początkowa: 50.0\\Energia końcowa: 3.0\\Liczba iteracji: 10000}
+\onlyplot{z_sud1_exp0001_05_10000}{$T(i) = T_0\cdot(1-0.0001)^{i}$\\Energia początkowa: 44.0\\Energia końcowa: 0.0\\Liczba iteracji: 2877}
+\onlyplot{z_sud1_exp001_05_10000}{$T(i) = T_0\cdot(1-0.001)^{i}$\\Energia początkowa: 43.0\\Energia końcowa: 0.0\\Liczba iteracji: 4467}
+\onlyplot{z_sud1_exp01_05_10000}{$T(i) = T_0\cdot(1-0.01)^{i}$\\Energia początkowa: 48.0\\Energia końcowa: 0.0\\Liczba iteracji: 1519}
+\onlyplot{z_sud1_const_05_10000}{$T(i)=T_0$ (f. stała)\\Energia początkowa: 42.0\\Energia końcowa: 4.0\\Liczba iteracji: 10000}
+
+Wybieram funkcję kwadratową - z moich eksperymentów liniowa funkcja temperatury może ochładzać układ zbyt szybko.
+\subsection{Rozwiązywanie trudnych sudoku}
+\subsubsection{Sudoku 1}
+Zostało rozwiązane przy testowaniu.
+\subsubsection{Sudoku 2}
+    \begin{tabular}{ccc|ccc|ccc}
+    8& & & & & & & & \\
+    & &3&6& & & & & \\
+    &7& & &9& &2& & \\ \hline
+    &5& & & &7& & & \\
+    & & & &4&5&7& & \\
+    & & &1& & & &3& \\ \hline
+    & &1& & & & &6&8\\
+    & &8&5& & & &1& \\
+    &9& & & & &4& & \\
+    \end{tabular}\\
+    (źródło: \url{http://www.telegraph.co.uk/news/science/science-news/9359579/Worlds-hardest-sudoku-can-you-crack-it.html})\\
+    \onlyplot{z_sud2_lin_05_1000000}{Energia początkowa: 53.0\\Energia końcowa: 2.0\\Liczba iteracji: 1000000}
+    
+    \subsubsection{Sudoku 3}
+    \begin{tabular}{ccc|ccc|ccc}
+    1& & & & &7& &9& \\
+    &3& & &2& & & &8\\
+    & &9&6& & &5& & \\
+    & &5&3& & &9& & \\ \hline
+    &1& & &8& & & &2\\
+    6& & & & &4& & & \\
+    3& & & & & & &1& \\ \hline
+    &4& & & & & & &7\\
+    & &7& & & &3& & \\
+
+\end{tabular}\\
+    (źródło: \url{https://www.kristanix.com/sudokuepic/worlds-hardest-sudoku.php})\\
+    \onlyplot{z_sud3_lin_05_1000000}{Energia początkowa: 57.0\\Energia końcowa: 2.0\\Liczba iteracji: 1000000}
+     
+    \subsubsection{Sudoku 4}
+    \begin{tabular}{ccc|ccc|ccc}
+         & & & & & & & &3\\
+        & & &6& &3& &7& \\
+        &5& &9&8& &6&1& \\ \hline
+        &1&7&5& & &3& & \\
+        9& &2& &3& &7& &1\\
+        & &8& & &1&4&2& \\ \hline
+        &8&6& &2&5& &9& \\
+        &2& &1& &9& & & \\
+        1& & & & & & & & \\
+        \end{tabular}\\
+        (źródło: \url{http://www.opensky.ca/~jdhildeb/software/sudokugen/})\\
+    \onlyplot{z_sud4_lin_05_1000000}{Energia początkowa: 37.0\\Energia końcowa: 0.0\\Liczba iteracji: 66725}
+             
+    \subsubsection{Sudoku 5}
+    \begin{tabular}{ccc|ccc|ccc}
+        9&2&-&-&6&7&8&-&-\\
+        -&1&-&-&-&8&-&2&-\\
+        3&-&-&-&-&-&5&-&9\\ \hline
+        1&-&6&-&3&-&-&-&-\\
+        -&-&-&6&-&2&-&-&-\\
+        -&-&-&-&5&-&1&-&6\\ \hline
+        2&-&3&-&-&-&-&-&1\\
+        -&4&-&2&-&-&-&8&-\\
+        -&-&9&1&8&-&-&4&2\\
+    \end{tabular}\\
+    (źródło j.w.)\\
+    \onlyplot{z_sud5_lin_05_1000000}{Energia początkowa: 44.0\\Energia końcowa: 0.0\\Liczba iteracji: 19748}
+\subsection{Wnioski}
+Niestety nie udało mi się rozwiązać najtrudniejszych sudoku jakie znalazłem - niemal za każdym razem końcowy poziom energii wynosił 2. Inne sudoku oznaczone jako bardzo trudne algorytm rozwiązał bez większych problemów.

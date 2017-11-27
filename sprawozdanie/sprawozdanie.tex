@@ -7,6 +7,7 @@
 \usepackage{listings}
 \usepackage[a4paper, margin=2.5cm]{geometry}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[hidelinks]{hyperref}
 \usepackage{lmodern} %boldface in listings
 
 \lstset{
@@ -31,23 +32,53 @@ Paweł Grochola
 \date {6 listopada 2017}
 
 \begin{document}
-    \newcommand{\bigplot}[1]{
+    \setlength{\fboxsep}{0pt}%
+    \setlength{\fboxrule}{0.25pt}%
+    \newcommand{\bigplot}[2]{
         \begin{minipage}{\textwidth}
+            #2
             \begin{minipage}{.7\linewidth}
-                \includegraphics[width=\textwidth]{../plots/#1_plot.png}
+                \fbox{\includegraphics[width=\textwidth]{../plots/#1_plot.png}}
             \end{minipage}%
-            \begin{minipage}{.3\linewidth}
-                \includegraphics[width=\textwidth]{../images/#1_initial.png}
-                \includegraphics[width=\textwidth]{../images/#1_result.png}
+        \hspace{1pt}
+            \begin{minipage}{.29\linewidth}
+                \fbox{\includegraphics[width=\textwidth]{../images/#1_initial.png}}
+                \vspace{1pt}
+                \fbox{\includegraphics[width=\textwidth]{../images/#1_result.png}}
             \end{minipage}
         \end{minipage}
     }
+
+    \newcommand{\bigresult}[2]{
+    \begin{minipage}{\textwidth}
+        \textbf{#2}
+        \begin{minipage}{.7\linewidth}
+            \fbox{\includegraphics[width=\textwidth]{../images/#1_result.png}}
+        \end{minipage}%
+    \hspace{1pt}
+        \begin{minipage}{.29\linewidth}
+            \fbox{\includegraphics[width=\textwidth]{../images/#1_initial.png}}
+            \vspace{1pt}
+            \fbox{\includegraphics[width=\textwidth]{../plots/#1_plot.png}}
+        \end{minipage}
+    \end{minipage}
+}
+\newcommand{\onlyplot}[2]{
+    \begin{minipage}{\textwidth}
+        \begin{minipage}{.7\linewidth}
+            \fbox{\includegraphics[width=\textwidth]{../plots/#1_plot.png}}
+        \end{minipage}%
+        \hspace{1pt}
+        \begin{minipage}{.29\linewidth}
+            #2
+        \end{minipage}
+    \end{minipage}
+}
    
 \maketitle
 
-\bigplot{crystal_1sf_03_10000_Cross_exp00001_500000}
-%\input{zad1.tex}
-%\input{zad2.tex}
-%\input{zad3.tex}
-%\input{zad4.tex}
+\input{wstep.tex}
+\input{zad1.tex}
+\input{zad2.tex}
+\input{zad3.tex}
 \end{document}
