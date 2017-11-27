@@ -12,6 +12,7 @@ celu.
 \subsection{Wstęp}
 Niestety w tym zadaniu miałem problem ze zbliżaniem się do energii minimalnej dla większej ilości punktów. W pewnym momencie żaden następny stan nie osiąga niższej energii niż poprzedni. Nie byłem w stanie znaleźć źródła problemu. Problem występuje niezależnie od parametrów symulacji. Jedynie dla niewielkiej ilości punktów znajdywane jest optymalne rozwiązanie.
 
+Miasta przechowywane są w liście w kolejności odwiedzania. Przy generowaniu stanu następnego zamieniam dwa elementy w liście ze sobą, albo sąsiednie, albo losowe. Funkcja energii to suma odległości kolejnych par punktów.
 \subsection{Rozkład normalny}
 Parametry:
 \begin{itemize}
@@ -20,6 +21,7 @@ Parametry:
     \item Rozmiar obrazu: 512x512
     \item Funkcja temperatury: $T(i) = \frac{-i\cdot T_0}{i_{max}} + T_0$ (f. liniowa)
     \item Liczba punktów: ?
+    \item Rozkład punktów: jednostajny
     \item Generowanie sąsiedniego stanu: consecutive
 \end{itemize}
 \bigresult{tsp_512_10_cons_unif_exp00001_100_1000000}{Energia początkowa: 2529.3, końcowa: 1403.7, liczba punktów: 10\\}
@@ -28,6 +30,16 @@ Parametry:
 
 
 \subsection{Odseparowane grupy}
+Parametry:
+\begin{itemize}
+    \item Temperatura początkowa: 100
+    \item Liczba iteracji: 1000000
+    \item Rozmiar obrazu: 512x512
+    \item Funkcja temperatury:$T(i) = T_0\cdot(1-0.00001)^{i}$
+    \item Liczba punktów: ?
+    \item Rozkład punktów: jednostajny
+    \item Generowanie sąsiedniego stanu: consecutive
+\end{itemize}
 \bigresult{tsp_512_10_cons_mugr_exp00001_100_1000000}{Energia początkowa: 3365.0, końcowa: 1901.2, liczba punktów: 10}
 \bigresult{tsp_512_100_cons_mugr_exp00001_100_1000000}{Energia początkowa: 29691.7, końcowa: 24443.6, liczba punktów: 100}
 \bigresult{tsp_512_1000_cons_mugr_exp00001_100_1000000}{Energia początkowa: 296512.5, końcowa: 282814.1, liczba punktów: 1000\\}
@@ -41,6 +53,7 @@ Parametry:
     \item Rozmiar obrazu: 512x512
     \item Funkcja temperatury: $T(i) = T_0\cdot(1-0.00001)^{i}$
     \item Liczba punktów: ?
+    \item Rozkład punktów: jednostajny
     \item Generowanie sąsiedniego stanu: ?
 \end{itemize}
 \bigresult{tsp_512_10_cons_unif_exp00001_100_1000000_a}{consecutive, liczba punktów: 10, energia początkowa: 3028.9, końcowa: 1438.3\\}
@@ -49,7 +62,7 @@ Parametry:
 \bigresult{tsp_512_100_arbi_unif_exp00001_100_1000000_a}{arbitrary, liczba punktów: 10, energia początkowa: 26274.7, końcowa: 21093.8\\}
 \bigresult{tsp_512_1000_cons_unif_exp00001_100_1000000_a}{consecutive, liczba punktów: 10, energia początkowa: 264528.4, końcowa: 248557.4\\}
 \bigresult{tsp_512_1000_arbi_unif_exp00001_100_1000000_a}{arbitrary, liczba punktów: 10, energia początkowa: 264528.4, końcowa: 247855.2\\}
-Niestety nie widać większej różnicy z uwagi na niezbieganie do minimum funkcji energii. W poprawnie działającym programie strategia consecutive powinna dawać lepsze rezultaty.
+Niestety nie widać większej różnicy z powodu niezbiegania do minimum funkcji energii. W poprawnie działającym programie strategia consecutive powinna dawać lepsze rezultaty.
 
 \subsection{Różne funkcje temperatury}
 Parametry:

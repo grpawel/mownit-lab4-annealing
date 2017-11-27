@@ -52,6 +52,8 @@ crystal|256|0.6|HalfEmptyCross  exp00001    boltzmann 100   1000000 crystal_3_06
 crystal|256|0.6|HalfWhiteCross  exp00001    boltzmann 100   1000000 crystal_3_06_100_HalfWhiteCross_exp00001_1000000
 
 
-crystal|256|0.3|Square25        exp001      boltzmann 100   100000 crystal_3_03_100_Square25_exp001_100000
-crystal|256|0.3|Square25        exp0001     boltzmann 100   100000 crystal_3_03_100_Square25_exp0001_100000
-crystal|256|0.3|Square25        exp00001    boltzmann 100   100000 crystal_3_03_100_Square25_exp00001_100000
+crystal|256|0.4|FarCross        exp001      boltzmann 100   1000000 crystal_4_03_100_Square25_exp001_1000000
+crystal|256|0.4|FarCross        exp0001     boltzmann 100   1000000 crystal_4_03_100_Square25_exp0001_1000000
+crystal|256|0.4|FarCross        exp00001    boltzmann 100   1000000 crystal_4_03_100_Square25_exp00001_1000000
+crystal|256|0.4|FarCross        quadratic   boltzmann 100   1000000 crystal_4_03_100_Square25_quad_1000000
+crystal|256|0.4|FarCross        linear      boltzmann 100   1000000 crystal_4_03_100_Square25_linear_1000000

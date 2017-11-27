@@ -8,16 +8,15 @@ symulowanego wyżarzania. W jaki sposób można generować stany sąsiednie? Jak
 nią się uzyskane wyniki w zależności od rodzaju sąsiedztwa, wybranej funkcji energii i
 szybkości spadku temperatury?
 \section{Wstęp}
-Kod odpowiedzialny za problem krystalizacji znajduje się w TODO\_repo.
 \begin{itemize}
-\item Najpierw generowany jest losowy obraz zawierający określoną ilość punktów.
+\item Najpierw generowany jest losowy obraz zawierający określoną ilość punktów, przechowywany jako dwuwymiarowa tablica boolowska.
 \item Następny stan jest generowany przez zamianę losowych dwóch punktów ze sobą, niezależnie od ich koloru.
 \item Energia jest obliczana jako suma energii każdego czarnego punktu na podstawie typu sąsiedztwa.
 \item Warunkiem zatrzymania jest jedynie liczba iteracji; przy implementacji uznałem że minimalna energia jest nieznana i nie sądziłem, że energia może osiągnąć 0 jak to miało miejsce w kilku symulacjach.
 \end{itemize}
 
 \section{Sąsiedztwa}
-Czarny kwadrat oznacza, że funkcja energii daje 1 za czarny piksel znajdujący się w tym miejscu. '?' oznacza nie branie danego sąsiaada pod uwagę, a B - funkcja energii liczy biały piksel podobnie jak czarny.
+Czarny kwadrat oznacza, że funkcja energii daje 1 za czarny piksel znajdujący się w tym miejscu. '?' oznacza nie branie danego sąsiaada pod uwagę, a B - funkcja energii liczy biały piksel analogicznie jak czarny.
 \begin{itemize}
     \item Krzyż:
     \begin{tabular}{|c|c|c|}
@@ -207,7 +206,7 @@ Parametry:
 Spośród powyższych energii najlepszą charakterystykę wydaje się dawać energia początkowa równa 100, jednak liczba iteracji jest zbyt mała.
 
 \subsubsection{Energia początkowa przy większej liczbie iteracji}
-Przeprowadziłem kolejne symulacje z energią ok. 100 i liczbą iteracji 1 000 000:\\
+Przeprowadziłem kolejne symulacje z temperaturą początkową ok. 100 i liczbą iteracji 1 000 000:\\
 \bigplot{crystal_1sf_03_100_Cross_exp00001_1000000}{$T_0=100$\\}
 \bigplot{crystal_1sf_03_200_Cross_exp00001_1000000}{$T_0=200$\\}
 \bigplot{crystal_1sf_03_50_Cross_exp00001_1000000}{$T_0=50$\\}
@@ -219,7 +218,7 @@ Ostatecznie wybrałem początkową temperaturę równą 100.
 \subsubsection{Gęstość $\delta$=0.1}
 Przy gęstości $\delta$=0.1 energia dla większości obrazów osiąga minimum równe 0.\\
 \bigresult{crystal_3_01_100_Cross_exp00001_1000000}{Krzyż\\}\\
-Algorytm minimalizuje funkcję energii, więc w wynikowym obrazie nie pojawia się żaden framgent krzyża - zawiera wyłącznie pojedyncze punkty, pionowe i poziome linie.\\
+Algorytm minimalizuje funkcję energii, więc w wynikowym obrazie nie pojawia się żaden framgent krzyża (punkty sąsiadujące ze sobą ukośnie)- zawiera wyłącznie pojedyncze punkty, pionowe i poziome linie.\\
 \bigresult{crystal_3_01_100_HalfEmptyCross_exp00001_1000000}{Połówka krzyża\\}
 Obraz jest niemal losowy, jedynie piksele sąsiadują ze sobą w poziomie lub pionie, a nie na ukos.
 \bigresult{crystal_3_01_100_Plus_exp00001_1000000}{Plus\\}
@@ -285,6 +284,7 @@ Obraz składa się z ukośnych linii.\\
 \textbf{Pionowe linie} - pominięty\\
 
 \subsubsection{Gęstość $\delta$=0.6 - dodatkowo}
+
 \bigresult{crystal_3_06_100_Cross_exp00001_1000000}{Krzyż\\}
 \bigresult{crystal_3_06_100_HalfEmptyCross_exp00001_1000000}{Połówka krzyża\\}
 \bigresult{crystal_3_06_100_Plus_exp00001_1000000}{Plus\\}
@@ -299,7 +299,19 @@ Obraz składa się z ukośnych linii.\\
 \textbf{Pionowe linie} - pominięty\\
 
 
-\subsection{Różne tempa schładzania}
-\bigresult{crystal_3_03_100_Square25_exp00001_100000}{$T(i) = T_0\cdot(1-0.00001)^{i}$\\}
-\bigresult{crystal_3_03_100_Square25_exp0001_100000}{$T(i) = T_0\cdot(1-0.0001)^{i}$\\}
-\bigresult{crystal_3_03_100_Square25_exp001_100000}{$T(i) = T_0\cdot(1-0.001)^{i}$\\}
+\subsection{Różne tempa chłodzenia}
+\begin{itemize}
+    \item Temperatura początkowa: 100
+    \item Liczba iteracji: 500000
+    \item Rozmiar obrazu: 256
+    \item Gęstość: 0.4
+    \item Funkcja temperatury: ?
+    \item Typ sąsiedztwa: kwadrat 5x5 
+\end{itemize}
+\bigresult{crystal_4_03_100_Square25_quad_1000000}{$T(i)=\frac{-T_0}{i_{max}^2}\cdot i^2 + T_0$ (f. kwadratowa)\\}
+\bigresult{crystal_4_03_100_Square25_linear_1000000}{$T(i) = \frac{-i\cdot T_0}{i_{max}} + T_0$ (f. liniowa)\\}
+Dla obydwu funkcji chłodzenie jest zbyt wolne, a obraz niewiele się różni od losowego.\\
+\bigresult{crystal_4_03_100_Square25_exp00001_1000000}{$T(i) = T_0(1-0.00001)^{i}$\\}
+\bigresult{crystal_4_03_100_Square25_exp0001_1000000}{$T(i) = T_0(1-0.0001)^{i}$\\}
+\bigresult{crystal_4_03_100_Square25_exp001_1000000}{$T(i) = T_0(1-0.001)^{i}$\\}\\
+Dla pozostałych trzech funkcji chłodzenia osiągany wynik jest niemal identyczny, ponieważ wszystkie osiągają wartość energii bliską minimum. 
