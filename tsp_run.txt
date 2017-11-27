@@ -1,0 +1,27 @@
+tsp|512|10|CONSECUTIVE|UNIFORM    linear boltzmann 100  1000000 tsp_512_10_cons_unif_exp00001_100_1000000
+tsp|512|100|CONSECUTIVE|UNIFORM   linear boltzmann 100  1000000 tsp_512_100_cons_unif_exp00001_100_1000000
+tsp|512|1000|CONSECUTIVE|UNIFORM  linear boltzmann 100  1000000 tsp_512_1000_cons_unif_exp00001_100_1000000
+
+tsp|512|10|CONSECUTIVE|UNIFORM    quadratic boltzmann 100  1000000   tsp_512_10_cons_unif_quad_100_1000000
+tsp|512|100|CONSECUTIVE|UNIFORM   quadratic boltzmann 100  1000000  tsp_512_100_cons_unif_quad_100_1000000
+tsp|512|1000|CONSECUTIVE|UNIFORM  quadratic boltzmann 100  1000000 tsp_512_1000_cons_unif_quad_100_1000000
+
+tsp|512|10|CONSECUTIVE|MULTIPLE_GROUPS    linear boltzmann 100  1000000 tsp_512_10_cons_mugr_exp00001_100_1000000
+tsp|512|100|CONSECUTIVE|MULTIPLE_GROUPS   linear boltzmann 100  1000000 tsp_512_100_cons_mugr_exp00001_100_1000000
+tsp|512|1000|CONSECUTIVE|MULTIPLE_GROUPS  linear boltzmann 100  1000000 tsp_512_1000_cons_mugr_exp00001_100_1000000
+
+
+tsp|512|1000|CONSECUTIVE|UNIFORM  linear boltzmann 100  1000000 tsp_512_1000_cons_unif_exp00001_100_1000000_a
+tsp|512|1000|ARBITRARY|UNIFORM    linear boltzmann 100  1000000 tsp_512_1000_arbi_unif_exp00001_100_1000000_a
+tsp|512|100|CONSECUTIVE|UNIFORM  linear boltzmann 100  1000000 tsp_512_100_cons_unif_exp00001_100_1000000_a
+tsp|512|100|ARBITRARY|UNIFORM    linear boltzmann 100  1000000 tsp_512_100_arbi_unif_exp00001_100_1000000_a
+tsp|512|10|CONSECUTIVE|UNIFORM  linear boltzmann 100  1000000 tsp_512_10_cons_unif_exp00001_100_1000000_a
+tsp|512|10|ARBITRARY|UNIFORM    linear boltzmann 100  1000000 tsp_512_10_arbi_unif_exp00001_100_1000000_a
+
+
+tsp|512|10|ARBITRARY|UNIFORM    linear boltzmann 100  1000000 tsp_512_10_arbi_unif_linear_100_1000000_b
+tsp|512|10|ARBITRARY|UNIFORM    exp00001 boltzmann 100  1000000 tsp_512_10_arbi_unif_exp00001_100_1000000_b
+tsp|512|10|ARBITRARY|UNIFORM    exp0001 boltzmann 100  1000000 tsp_512_10_arbi_unif_exp0001_100_1000000_b
+tsp|512|10|ARBITRARY|UNIFORM    exp001 boltzmann 100  1000000 tsp_512_10_arbi_unif_exp001_100_1000000_b
+tsp|512|10|ARBITRARY|UNIFORM    exp01 boltzmann 100  1000000 tsp_512_10_arbi_unif_exp01_100_1000000_b
+tsp|512|10|ARBITRARY|UNIFORM    constant boltzmann 100  1000000 tsp_512_10_arbi_unif_constant_100_1000000_b

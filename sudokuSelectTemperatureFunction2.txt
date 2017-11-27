@@ -1,0 +1,7 @@
+sudoku1.txt linear boltzmann 0.5  10000          z_sud1_lin_05_10000
+sudoku1.txt quadratic boltzmann 0.5  10000      z_sud1_quad_05_10000
+sudoku1.txt exp00001 boltzmann 0.5  10000   z_sud1_exp00001_05_10000
+sudoku1.txt exp0001 boltzmann 0.5  10000     z_sud1_exp0001_05_10000
+sudoku1.txt exp001 boltzmann 0.5  10000       z_sud1_exp001_05_10000
+sudoku1.txt exp01 boltzmann 0.5  10000         z_sud1_exp01_05_10000
+sudoku1.txt constant boltzmann 0.5  10000      z_sud1_const_05_10000

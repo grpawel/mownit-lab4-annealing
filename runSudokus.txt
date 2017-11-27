@@ -1,22 +1,5 @@
-sudoku1.txt quadratic boltzmann 0.4 1000000
-sudoku2.txt quadratic boltzmann 0.1 1000000
-sudoku2.txt quadratic boltzmann 0.2 1000000
-sudoku2.txt quadratic boltzmann 0.3 1000000
-sudoku2.txt quadratic boltzmann 0.4 1000000
-sudoku2.txt quadratic boltzmann 0.5 1000000
-sudoku2.txt quadratic boltzmann 0.6 1000000
-sudoku2.txt quadratic boltzmann 0.7 1000000
-sudoku2.txt quadratic boltzmann 0.8 1000000
-sudoku2.txt quadratic boltzmann 0.9 1000000
-sudoku3.txt quadratic boltzmann 0.4 1000000
-
-sudoku2.txt linear boltzmann 0.1 1000000
-sudoku2.txt linear boltzmann 0.2 1000000
-sudoku2.txt linear boltzmann 0.3 1000000
-sudoku2.txt linear boltzmann 0.4 1000000
-sudoku2.txt linear boltzmann 0.5 1000000
-sudoku2.txt linear boltzmann 0.6 1000000
-sudoku2.txt linear boltzmann 0.7 1000000
-sudoku2.txt linear boltzmann 0.8 1000000
-sudoku2.txt linear boltzmann 0.9 1000000
-sudoku3.txt linear boltzmann 0.4 1000000
+sudoku1.txt quadratic boltzmann 0.5 1000000 z_sud1_lin_05_1000000
+sudoku2.txt quadratic boltzmann 0.5 1000000 z_sud2_lin_05_1000000
+sudoku3.txt quadratic boltzmann 0.5 1000000 z_sud3_lin_05_1000000
+sudoku4.txt quadratic boltzmann 0.5 1000000 z_sud4_lin_05_1000000
+sudoku5.txt quadratic boltzmann 0.5 1000000 z_sud5_lin_05_1000000

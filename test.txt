@@ -1,2 +1,0 @@
-sudoku2.txt exp00001 boltzmann 0.4  1000000 sud2_exp00001
-sudoku2.txt constant boltzmann 0.4  1000000 sud2_constant

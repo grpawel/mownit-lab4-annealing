@@ -1,8 +1,23 @@
-crystal|256|0.3|Cross     linear boltzmann 10  500000  crystal_03_Cross_linear_500000
-crystal|256|0.3|Plus      linear boltzmann 10  500000  crystal_03_Plus_linear_500000
-crystal|256|0.3|LongPlus  linear boltzmann 10  500000  crystal_03_LongPlus_linear_500000
-crystal|256|0.3|Square9   linear boltzmann 10  500000  crystal_03_Square9_linear_500000
-crystal|256|0.3|Square25  linear boltzmann 10  500000  crystal_03_Square25_linear_500000
-crystal|256|0.3|EmptySquare25  linear boltzmann 10  500000  crystal_03_EmptySquare25_linear_500000
-crystal|256|0.3|VerticalLines  linear boltzmann 10  500000  crystal_03_Vertical_linear_500000
-crystal|256|0.3|HorizontalLines  linear boltzmann 10  500000  crystal_03_Horizontal_linear_500000
+crystal|256|0.3|Cross           linear      boltzmann 10 500000 crystal_03_Cross_linear_500000
+crystal|256|0.3|Plus            linear      boltzmann 10 500000 crystal_03_Plus_linear_500000
+crystal|256|0.3|LongPlus        linear      boltzmann 10 500000 crystal_03_LongPlus_linear_500000
+crystal|256|0.3|Square9         linear      boltzmann 10 500000 crystal_03_Square9_linear_500000
+crystal|256|0.3|Square25        linear      boltzmann 10 500000 crystal_03_Square25_linear_500000
+crystal|256|0.3|EmptySquare25   linear      boltzmann 10 500000 crystal_03_EmptySquare25_linear_500000
+crystal|256|0.3|VerticalLines   linear      boltzmann 10 500000 crystal_03_Vertical_linear_500000
+crystal|256|0.3|HorizontalLines linear      boltzmann 10 500000 crystal_03_Horizontal_linear_500000
+crystal|256|0.3|FarPlus         linear      boltzmann 10 500000 crystal_03_FarPlus_linear_500000
+crystal|256|0.3|FarCross        linear      boltzmann 10 500000 crystal_03_FarCross_linear_500000
+                                            
+                                            
+crystal|256|0.1|Cross           exp00001    boltzmann 10 400000 crystal_01_Cross_exp00001_400000
+crystal|256|0.3|Cross           exp00001    boltzmann 10 400000 crystal_03_Cross_exp00001_400000
+crystal|256|0.4|Cross           exp00001    boltzmann 10 400000 crystal_04_Cross_exp00001_400000
+crystal|256|0.1|EmptySquare25   exp00001    boltzmann 10 400000 crystal_01_EmptySquare25_exp00001_400000
+crystal|256|0.3|EmptySquare25   exp00001    boltzmann 10 400000 crystal_03_EmptySquare25_exp00001_400000
+crystal|256|0.4|EmptySquare25   exp00001    boltzmann 10 400000 crystal_04_EmptySquare25_exp00001_400000
+
+crystal|256|0.4|Cross           exp00001    boltzmann 10 500000 crystal_04_Cross_exp00001_500000
+crystal|256|0.4|Cross           exp0001     boltzmann 10 500000 crystal_04_Cross_exp0001_500000
+crystal|256|0.4|Cross           exp001      boltzmann 10 500000 crystal_04_Cross_exp001_500000
+crystal|256|0.4|Cross           quadratic   boltzmann 10 500000 crystal_04_Cross_quadratic_500000

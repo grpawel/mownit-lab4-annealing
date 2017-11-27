@@ -1,0 +1,19 @@
+crystal|256|0.3|Cross           exp00001    boltzmann 10000 500000 crystal_1sf_03_10000_Cross_exp00001_500000
+crystal|256|0.3|Cross           exp0001     boltzmann 10000 500000 crystal_1sf_03_10000_Cross_exp0001_500000
+crystal|256|0.3|Cross           exp001      boltzmann 10000 500000 crystal_1sf_03_10000_Cross_exp001_500000
+crystal|256|0.3|Cross           exp01       boltzmann 10000 500000 crystal_1sf_03_10000_Cross_exp01_500000
+crystal|256|0.3|Cross           linear      boltzmann 10000 500000 crystal_1sf_03_10000_Cross_linear_500000
+crystal|256|0.3|Cross           constant    boltzmann 10000 500000 crystal_1sf_03_10000_Cross_constant_500000
+
+
+crystal|256|0.3|Cross           exp00001    boltzmann 10000 500000 crystal_1sf_03_10000_Cross_exp00001_500000
+crystal|256|0.3|Cross           exp00001    boltzmann 1000  500000 crystal_1sf_03_1000_Cross_exp00001_500000
+crystal|256|0.3|Cross           exp00001    boltzmann 100   500000 crystal_1sf_03_100_Cross_exp00001_500000
+crystal|256|0.3|Cross           exp00001    boltzmann 10    500000 crystal_1sf_03_10_Cross_exp00001_500000
+crystal|256|0.3|Cross           exp00001    boltzmann 1     500000 crystal_1sf_03_1_Cross_exp00001_500000
+crystal|256|0.3|Cross           exp00001    boltzmann 0.5   500000 crystal_1sf_03_05_Cross_exp00001_500000
+crystal|256|0.3|Cross           exp00001    boltzmann 0.1   500000 crystal_1sf_03_01_Cross_exp00001_500000
+
+crystal|256|0.3|Cross           exp00001    boltzmann 100   1000000 crystal_1sf_03_100_Cross_exp00001_1000000
+crystal|256|0.3|Cross           exp00001    boltzmann 200   1000000 crystal_1sf_03_200_Cross_exp00001_1000000
+crystal|256|0.3|Cross           exp00001    boltzmann 50    1000000 crystal_1sf_03_50_Cross_exp00001_1000000

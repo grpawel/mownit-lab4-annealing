@@ -1,0 +1,57 @@
+crystal|256|0.3|Cross           exp00001    boltzmann 100   1000000 crystal_3_03_100_Cross_exp00001_1000000
+crystal|256|0.3|Plus            exp00001    boltzmann 100   1000000 crystal_3_03_100_Plus_exp00001_1000000
+crystal|256|0.3|LongPlus        exp00001    boltzmann 100   1000000 crystal_3_03_100_LongPlus_exp00001_1000000
+crystal|256|0.3|Square9         exp00001    boltzmann 100   1000000 crystal_3_03_100_Square9_exp00001_1000000
+crystal|256|0.3|Square25        exp00001    boltzmann 100   1000000 crystal_3_03_100_Square25_exp00001_1000000
+crystal|256|0.3|EmptySquare25   exp00001    boltzmann 100   1000000 crystal_3_03_100_EmptySquare25_exp00001_1000000
+crystal|256|0.3|HorizontalLines exp00001    boltzmann 100   1000000 crystal_3_03_100_HorizontalLines_exp00001_1000000
+crystal|256|0.3|VerticalLines   exp00001    boltzmann 100   1000000 crystal_3_03_100_VerticalLines_exp00001_1000000
+crystal|256|0.3|FarCross        exp00001    boltzmann 100   1000000 crystal_3_03_100_FarCross_exp00001_1000000
+crystal|256|0.3|FarPlus         exp00001    boltzmann 100   1000000 crystal_3_03_100_FarPlus_exp00001_1000000
+crystal|256|0.3|HalfEmptyCross  exp00001    boltzmann 100   1000000 crystal_3_03_100_HalfEmptyCross_exp00001_1000000
+crystal|256|0.3|HalfWhiteCross  exp00001    boltzmann 100   1000000 crystal_3_03_100_HalfWhiteCross_exp00001_1000000
+
+crystal|256|0.1|Cross           exp00001    boltzmann 100   1000000 crystal_3_01_100_Cross_exp00001_1000000
+crystal|256|0.1|Plus            exp00001    boltzmann 100   1000000 crystal_3_01_100_Plus_exp00001_1000000
+crystal|256|0.1|LongPlus        exp00001    boltzmann 100   1000000 crystal_3_01_100_LongPlus_exp00001_1000000
+crystal|256|0.1|Square9         exp00001    boltzmann 100   1000000 crystal_3_01_100_Square9_exp00001_1000000
+crystal|256|0.1|Square25        exp00001    boltzmann 100   1000000 crystal_3_01_100_Square25_exp00001_1000000
+crystal|256|0.1|EmptySquare25   exp00001    boltzmann 100   1000000 crystal_3_01_100_EmptySquare25_exp00001_1000000
+crystal|256|0.1|HorizontalLines exp00001    boltzmann 100   1000000 crystal_3_01_100_HorizontalLines_exp00001_1000000
+crystal|256|0.1|VerticalLines   exp00001    boltzmann 100   1000000 crystal_3_01_100_VerticalLines_exp00001_1000000
+crystal|256|0.1|FarCross        exp00001    boltzmann 100   1000000 crystal_3_01_100_FarCross_exp00001_1000000
+crystal|256|0.1|FarPlus         exp00001    boltzmann 100   1000000 crystal_3_01_100_FarPlus_exp00001_1000000
+crystal|256|0.1|HalfEmptyCross  exp00001    boltzmann 100   1000000 crystal_3_01_100_HalfEmptyCross_exp00001_1000000
+crystal|256|0.1|HalfWhiteCross  exp00001    boltzmann 100   1000000 crystal_3_01_100_HalfWhiteCross_exp00001_1000000
+
+crystal|256|0.4|Cross           exp00001    boltzmann 100   1000000 crystal_3_04_100_Cross_exp00001_1000000
+crystal|256|0.4|Plus            exp00001    boltzmann 100   1000000 crystal_3_04_100_Plus_exp00001_1000000
+crystal|256|0.4|LongPlus        exp00001    boltzmann 100   1000000 crystal_3_04_100_LongPlus_exp00001_1000000
+crystal|256|0.4|Square9         exp00001    boltzmann 100   1000000 crystal_3_04_100_Square9_exp00001_1000000
+crystal|256|0.4|Square25        exp00001    boltzmann 100   1000000 crystal_3_04_100_Square25_exp00001_1000000
+crystal|256|0.4|EmptySquare25   exp00001    boltzmann 100   1000000 crystal_3_04_100_EmptySquare25_exp00001_1000000
+crystal|256|0.4|HorizontalLines exp00001    boltzmann 100   1000000 crystal_3_04_100_HorizontalLines_exp00001_1000000
+crystal|256|0.4|VerticalLines   exp00001    boltzmann 100   1000000 crystal_3_04_100_VerticalLines_exp00001_1000000
+crystal|256|0.4|FarCross        exp00001    boltzmann 100   1000000 crystal_3_04_100_FarCross_exp00001_1000000
+crystal|256|0.4|FarPlus         exp00001    boltzmann 100   1000000 crystal_3_04_100_FarPlus_exp00001_1000000
+crystal|256|0.4|HalfEmptyCross  exp00001    boltzmann 100   1000000 crystal_3_04_100_HalfEmptyCross_exp00001_1000000
+crystal|256|0.4|HalfWhiteCross  exp00001    boltzmann 100   1000000 crystal_3_04_100_HalfWhiteCross_exp00001_1000000
+
+
+crystal|256|0.6|Cross           exp00001    boltzmann 100   1000000 crystal_3_06_100_Cross_exp00001_1000000
+crystal|256|0.6|Plus            exp00001    boltzmann 100   1000000 crystal_3_06_100_Plus_exp00001_1000000
+crystal|256|0.6|LongPlus        exp00001    boltzmann 100   1000000 crystal_3_06_100_LongPlus_exp00001_1000000
+crystal|256|0.6|Square9         exp00001    boltzmann 100   1000000 crystal_3_06_100_Square9_exp00001_1000000
+crystal|256|0.6|Square25        exp00001    boltzmann 100   1000000 crystal_3_06_100_Square25_exp00001_1000000
+crystal|256|0.6|EmptySquare25   exp00001    boltzmann 100   1000000 crystal_3_06_100_EmptySquare25_exp00001_1000000
+crystal|256|0.6|HorizontalLines exp00001    boltzmann 100   1000000 crystal_3_06_100_HorizontalLines_exp00001_1000000
+crystal|256|0.6|VerticalLines   exp00001    boltzmann 100   1000000 crystal_3_06_100_VerticalLines_exp00001_1000000
+crystal|256|0.6|FarCross        exp00001    boltzmann 100   1000000 crystal_3_06_100_FarCross_exp00001_1000000
+crystal|256|0.6|FarPlus         exp00001    boltzmann 100   1000000 crystal_3_06_100_FarPlus_exp00001_1000000
+crystal|256|0.6|HalfEmptyCross  exp00001    boltzmann 100   1000000 crystal_3_06_100_HalfEmptyCross_exp00001_1000000
+crystal|256|0.6|HalfWhiteCross  exp00001    boltzmann 100   1000000 crystal_3_06_100_HalfWhiteCross_exp00001_1000000
+
+
+crystal|256|0.3|Square25        exp001      boltzmann 100   100000 crystal_3_03_100_Square25_exp001_100000
+crystal|256|0.3|Square25        exp0001     boltzmann 100   100000 crystal_3_03_100_Square25_exp0001_100000
+crystal|256|0.3|Square25        exp00001    boltzmann 100   100000 crystal_3_03_100_Square25_exp00001_100000
